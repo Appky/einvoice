@@ -1,0 +1,1282 @@
+{
+  "generated": null,
+  "rows": [
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/extension/04.01a-INVOICE_ubl.xml",
+      "format": "ubl-invoice",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/extension/04.02a-INVOICE_ubl.xml",
+      "format": "ubl-invoice",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/extension/04.03a-INVOICE_ubl.xml",
+      "format": "ubl-invoice",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/extension/04.04a-INVOICE_ubl.xml",
+      "format": "ubl-invoice",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/extension/04.05a-INVOICE_uncefact.xml",
+      "format": "cii",
+      "profile": "XRechnung",
+      "ok": false,
+      "errors": 2,
+      "warnings": 0,
+      "rules": [
+        "BR-CL-10",
+        "BR-CL-21"
+      ],
+      "findings": [
+        {
+          "rule": "BR-CL-10",
+          "severity": "fatal",
+          "text": "Any identifier identification scheme identifier MUST be coded using one of the ISO 6523 ICD list.",
+          "hint": "Unknown identifier scheme \"XR03\"."
+        },
+        {
+          "rule": "BR-CL-21",
+          "severity": "fatal",
+          "text": "Item standard identifier scheme identifier (BT-157-1) MUST belong to the ISO 6523 ICD code list.",
+          "where": "invoice line TEST_POSITION_01"
+        }
+      ]
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/extension/05.01a-INVOICE_ubl.xml",
+      "format": "ubl-invoice",
+      "profile": "XRechnung",
+      "ok": false,
+      "errors": 1,
+      "warnings": 0,
+      "rules": [
+        "BR-CO-16"
+      ],
+      "findings": [
+        {
+          "rule": "BR-CO-16",
+          "severity": "fatal",
+          "text": "Amount due for payment (BT-115) = Invoice total amount with VAT (BT-112) - Paid amount (BT-113) + Rounding amount (BT-114).",
+          "hint": "BT-115 is 366.86, expected 336.9 (= 336.9 − 0 + 0)."
+        }
+      ]
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/01.01a-INVOICE_ubl.xml",
+      "format": "ubl-invoice",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/01.01a-INVOICE_uncefact.xml",
+      "format": "cii",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/01.02a-INVOICE_ubl.xml",
+      "format": "ubl-invoice",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/01.02a-INVOICE_uncefact.xml",
+      "format": "cii",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/01.03a-INVOICE_ubl.xml",
+      "format": "ubl-invoice",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/01.03a-INVOICE_uncefact.xml",
+      "format": "cii",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/01.04a-INVOICE_ubl.xml",
+      "format": "ubl-invoice",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/01.04a-INVOICE_uncefact.xml",
+      "format": "cii",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/01.05a-INVOICE_ubl.xml",
+      "format": "ubl-invoice",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/01.05a-INVOICE_uncefact.xml",
+      "format": "cii",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/01.06a-INVOICE_ubl.xml",
+      "format": "ubl-invoice",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/01.06a-INVOICE_uncefact.xml",
+      "format": "cii",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/01.07a-INVOICE_ubl.xml",
+      "format": "ubl-invoice",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/01.07a-INVOICE_uncefact.xml",
+      "format": "cii",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/01.08a-INVOICE_ubl.xml",
+      "format": "ubl-invoice",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/01.08a-INVOICE_uncefact.xml",
+      "format": "cii",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/01.09a-INVOICE_ubl.xml",
+      "format": "ubl-invoice",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/01.09a-INVOICE_uncefact.xml",
+      "format": "cii",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/01.10a-INVOICE_ubl.xml",
+      "format": "ubl-invoice",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/01.10a-INVOICE_uncefact.xml",
+      "format": "cii",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/01.11a-INVOICE_ubl.xml",
+      "format": "ubl-invoice",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/01.11a-INVOICE_uncefact.xml",
+      "format": "cii",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/01.12a-INVOICE_ubl.xml",
+      "format": "ubl-invoice",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/01.12a-INVOICE_uncefact.xml",
+      "format": "cii",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/01.13a-INVOICE_ubl.xml",
+      "format": "ubl-invoice",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/01.13a-INVOICE_uncefact.xml",
+      "format": "cii",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/01.14a-INVOICE_ubl.xml",
+      "format": "ubl-invoice",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/01.14a-INVOICE_uncefact.xml",
+      "format": "cii",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/01.15a-INVOICE_ubl.xml",
+      "format": "ubl-invoice",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/01.15a-INVOICE_uncefact.xml",
+      "format": "cii",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/01.17a-INVOICE_ubl.xml",
+      "format": "ubl-invoice",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/01.17a-INVOICE_uncefact.xml",
+      "format": "cii",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/01.18a-INVOICE_ubl.xml",
+      "format": "ubl-invoice",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/01.18a-INVOICE_uncefact.xml",
+      "format": "cii",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/01.19a-INVOICE_ubl.xml",
+      "format": "ubl-invoice",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/01.19a-INVOICE_uncefact.xml",
+      "format": "cii",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/01.20a-INVOICE_ubl.xml",
+      "format": "ubl-invoice",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/01.20a-INVOICE_uncefact.xml",
+      "format": "cii",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/01.21a-INVOICE_ubl.xml",
+      "format": "ubl-invoice",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/01.21a-INVOICE_uncefact.xml",
+      "format": "cii",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/02.01a-INVOICE_ubl.xml",
+      "format": "ubl-invoice",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/02.01a-INVOICE_uncefact.xml",
+      "format": "cii",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/02.02a-INVOICE_ubl.xml",
+      "format": "ubl-invoice",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/02.02a-INVOICE_uncefact.xml",
+      "format": "cii",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/02.03a-INVOICE_ubl.xml",
+      "format": "ubl-invoice",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/02.03a-INVOICE_uncefact.xml",
+      "format": "cii",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/02.04a-INVOICE_ubl.xml",
+      "format": "ubl-invoice",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/02.04a-INVOICE_uncefact.xml",
+      "format": "cii",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/02.05a-INVOICE_ubl.xml",
+      "format": "ubl-invoice",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/02.05a-INVOICE_uncefact.xml",
+      "format": "cii",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/02.06a-INVOICE_ubl.xml",
+      "format": "ubl-invoice",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/02.06a-INVOICE_uncefact.xml",
+      "format": "cii",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/03.01a-INVOICE_ubl.xml",
+      "format": "ubl-invoice",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/03.01a-INVOICE_uncefact.xml",
+      "format": "cii",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/03.02a-INVOICE_ubl.xml",
+      "format": "ubl-invoice",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/03.02a-INVOICE_uncefact.xml",
+      "format": "cii",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/03.03a-INVOICE_ubl.xml",
+      "format": "ubl-invoice",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/03.03a-INVOICE_uncefact.xml",
+      "format": "cii",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/03.04a-INVOICE_ubl.xml",
+      "format": "ubl-invoice",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/03.04a-INVOICE_uncefact.xml",
+      "format": "cii",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/03.05a-INVOICE_ubl.xml",
+      "format": "ubl-invoice",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/03.05a-INVOICE_uncefact.xml",
+      "format": "cii",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/03.06a-INVOICE_ubl.xml",
+      "format": "ubl-invoice",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/03.06a-INVOICE_uncefact.xml",
+      "format": "cii",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/03.07a-INVOICE_ubl.xml",
+      "format": "ubl-invoice",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/standard/03.07a-INVOICE_uncefact.xml",
+      "format": "cii",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/technical-cases/cius/01.01_comprehensive_test_ubl.xml",
+      "format": "ubl-invoice",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/technical-cases/cius/01.01_comprehensive_test_uncefact.xml",
+      "format": "cii",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/technical-cases/cius/01.02_comprehensive_test_ubl.xml",
+      "format": "ubl-invoice",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/technical-cases/cius/01.02_comprehensive_test_uncefact.xml",
+      "format": "cii",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/technical-cases/cius/01.03_comprehensive_test_ubl.xml",
+      "format": "ubl-invoice",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/technical-cases/cius/01.03_comprehensive_test_uncefact.xml",
+      "format": "cii",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/technical-cases/cius/01.04_comprehensive_test_ubl.xml",
+      "format": "ubl-invoice",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/technical-cases/cius/01.04_comprehensive_test_uncefact.xml",
+      "format": "cii",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/technical-cases/cius/01.05_minimal_test_ubl.xml",
+      "format": "ubl-invoice",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/technical-cases/cius/01.05_minimal_test_uncefact.xml",
+      "format": "cii",
+      "profile": "XRechnung",
+      "ok": false,
+      "errors": 1,
+      "warnings": 0,
+      "rules": [
+        "BR-CO-15"
+      ],
+      "findings": [
+        {
+          "rule": "BR-CO-15",
+          "severity": "fatal",
+          "text": "Invoice total amount with VAT (BT-112) = Invoice total amount without VAT (BT-109) + Invoice total VAT amount (BT-110).",
+          "hint": "The Invoice total VAT amount (BT-110) in the invoice currency is missing."
+        }
+      ]
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/technical-cases/cius/01.06_minimal_test_ubl.xml",
+      "format": "ubl-invoice",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/technical-cases/cius/01.06_minimal_test_uncefact.xml",
+      "format": "cii",
+      "profile": "XRechnung",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/technical-cases/cvd/02.01a-cvd_INVOICE_ubl.xml",
+      "format": "ubl-invoice",
+      "profile": "XRechnung",
+      "ok": false,
+      "errors": 1,
+      "warnings": 0,
+      "rules": [
+        "BR-CL-13"
+      ],
+      "findings": [
+        {
+          "rule": "BR-CL-13",
+          "severity": "fatal",
+          "text": "Item classification identifier identification scheme identifier (BT-158-1) MUST be coded using one of the UNTDID 7143 list.",
+          "where": "invoice line 1"
+        }
+      ]
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/technical-cases/cvd/02.01a-cvd_INVOICE_uncefact.xml",
+      "format": "cii",
+      "profile": "XRechnung",
+      "ok": false,
+      "errors": 1,
+      "warnings": 0,
+      "rules": [
+        "BR-CL-13"
+      ],
+      "findings": [
+        {
+          "rule": "BR-CL-13",
+          "severity": "fatal",
+          "text": "Item classification identifier identification scheme identifier (BT-158-1) MUST be coded using one of the UNTDID 7143 list.",
+          "where": "invoice line 1"
+        }
+      ]
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/eInvoicing-EN16931/ubl/examples/BIS3_Invoice_negativ.XML",
+      "format": "ubl-invoice",
+      "profile": "Peppol BIS Billing 3.0",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/eInvoicing-EN16931/ubl/examples/BIS3_Invoice_positive.XML",
+      "format": "ubl-invoice",
+      "profile": "Peppol BIS Billing 3.0",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/eInvoicing-EN16931/ubl/examples/FT G2G_TD01 con Allegato, Bonifico e Split Payment.xml",
+      "format": "ubl-invoice",
+      "profile": "Peppol BIS Billing 3.0",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/eInvoicing-EN16931/ubl/examples/guide-example1.xml",
+      "format": "ubl-invoice",
+      "profile": "EN 16931 core",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/eInvoicing-EN16931/ubl/examples/guide-example2.xml",
+      "format": "ubl-invoice",
+      "profile": "EN 16931 core",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/eInvoicing-EN16931/ubl/examples/guide-example3.xml",
+      "format": "ubl-invoice",
+      "profile": "EN 16931 core",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/eInvoicing-EN16931/ubl/examples/issue116.xml",
+      "format": "ubl-invoice",
+      "profile": "Peppol BIS Billing 3.0",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/eInvoicing-EN16931/ubl/examples/sample-discount-price.xml",
+      "format": "ubl-invoice",
+      "profile": "EN 16931 core",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/eInvoicing-EN16931/ubl/examples/ubl-tc434-creditnote1.xml",
+      "format": "ubl-creditnote",
+      "profile": "EN 16931 core",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/eInvoicing-EN16931/ubl/examples/ubl-tc434-example1.xml",
+      "format": "ubl-invoice",
+      "profile": "EN 16931 core",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/eInvoicing-EN16931/ubl/examples/ubl-tc434-example10.xml",
+      "format": "ubl-invoice",
+      "profile": "EN 16931 core",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/eInvoicing-EN16931/ubl/examples/ubl-tc434-example2.xml",
+      "format": "ubl-invoice",
+      "profile": "EN 16931 core",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/eInvoicing-EN16931/ubl/examples/ubl-tc434-example3.xml",
+      "format": "ubl-invoice",
+      "profile": "EN 16931 core",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/eInvoicing-EN16931/ubl/examples/ubl-tc434-example4.xml",
+      "format": "ubl-invoice",
+      "profile": "EN 16931 core",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/eInvoicing-EN16931/ubl/examples/ubl-tc434-example5.xml",
+      "format": "ubl-invoice",
+      "profile": "EN 16931 core",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/eInvoicing-EN16931/ubl/examples/ubl-tc434-example6.xml",
+      "format": "ubl-invoice",
+      "profile": "EN 16931 core",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/eInvoicing-EN16931/ubl/examples/ubl-tc434-example7.xml",
+      "format": "ubl-invoice",
+      "profile": "EN 16931 core",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/eInvoicing-EN16931/ubl/examples/ubl-tc434-example8.xml",
+      "format": "ubl-invoice",
+      "profile": "EN 16931 core",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/eInvoicing-EN16931/ubl/examples/ubl-tc434-example9.xml",
+      "format": "ubl-invoice",
+      "profile": "EN 16931 core",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/eInvoicing-EN16931/cii/examples/CII-BR-CO-10-RoundingIssue.xml",
+      "format": "cii",
+      "profile": "Factur-X / ZUGFeRD EN 16931",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/eInvoicing-EN16931/cii/examples/CII_business_example_01.xml",
+      "format": "cii",
+      "profile": "EN 16931 core",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/eInvoicing-EN16931/cii/examples/CII_business_example_02.xml",
+      "format": "cii",
+      "profile": "Factur-X / ZUGFeRD EN 16931",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/eInvoicing-EN16931/cii/examples/CII_business_example_Z.xml",
+      "format": "cii",
+      "profile": "Factur-X / ZUGFeRD EN 16931",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/eInvoicing-EN16931/cii/examples/CII_example1.xml",
+      "format": "cii",
+      "profile": "EN 16931 core",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/eInvoicing-EN16931/cii/examples/CII_example2.xml",
+      "format": "cii",
+      "profile": "EN 16931 core",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/eInvoicing-EN16931/cii/examples/CII_example3.xml",
+      "format": "cii",
+      "profile": "EN 16931 core",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/eInvoicing-EN16931/cii/examples/CII_example4.xml",
+      "format": "cii",
+      "profile": "EN 16931 core",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/eInvoicing-EN16931/cii/examples/CII_example5.xml",
+      "format": "cii",
+      "profile": "EN 16931 core",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/eInvoicing-EN16931/cii/examples/CII_example6.xml",
+      "format": "cii",
+      "profile": "EN 16931 core",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/eInvoicing-EN16931/cii/examples/CII_example7.xml",
+      "format": "cii",
+      "profile": "EN 16931 core",
+      "ok": false,
+      "errors": 1,
+      "warnings": 0,
+      "rules": [
+        "BR-CO-15"
+      ],
+      "findings": [
+        {
+          "rule": "BR-CO-15",
+          "severity": "fatal",
+          "text": "Invoice total amount with VAT (BT-112) = Invoice total amount without VAT (BT-109) + Invoice total VAT amount (BT-110).",
+          "hint": "The Invoice total VAT amount (BT-110) in the invoice currency is missing."
+        }
+      ]
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/eInvoicing-EN16931/cii/examples/CII_example8.xml",
+      "format": "cii",
+      "profile": "EN 16931 core",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/eInvoicing-EN16931/cii/examples/CII_example9.xml",
+      "format": "cii",
+      "profile": "EN 16931 core",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/eInvoicing-EN16931/cii/examples/XRechnung-O.xml",
+      "format": "cii",
+      "profile": "EN 16931 core",
+      "ok": false,
+      "errors": 2,
+      "warnings": 0,
+      "rules": [
+        "BR-CO-15",
+        "BR-CL-22"
+      ],
+      "findings": [
+        {
+          "rule": "BR-CO-15",
+          "severity": "fatal",
+          "text": "Invoice total amount with VAT (BT-112) = Invoice total amount without VAT (BT-109) + Invoice total VAT amount (BT-110).",
+          "hint": "The Invoice total VAT amount (BT-110) in the invoice currency is missing."
+        },
+        {
+          "rule": "BR-CL-22",
+          "severity": "fatal",
+          "text": "Tax exemption reason code identifier scheme identifier (BT-121) MUST belong to the CEF VATEX code list.",
+          "hint": "Unknown exemption reason code \"vatex-eu-132-1a\"."
+        }
+      ]
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/eInvoicing-EN16931/cii/examples/huf_example_cii.xml",
+      "format": "cii",
+      "profile": "EN 16931 core",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    }
+  ]
+}

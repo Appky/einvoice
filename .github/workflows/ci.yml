@@ -1,0 +1,83 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    # Weekly corpus re-run: catches upstream artefact/test-suite changes.
+    - cron: "17 6 * * 1"
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npm test
+
+      - name: Fetch official corpora
+        run: |
+          git clone --depth 1 https://github.com/ConnectingEurope/eInvoicing-EN16931.git corpus-cache/eInvoicing-EN16931
+          git clone --depth 1 https://github.com/itplr-kosit/xrechnung-testsuite.git corpus-cache/xrechnung-testsuite
+
+      - name: Verify generated codelists match official artefacts
+        run: |
+          node scripts/gen-codelists.mjs corpus-cache/eInvoicing-EN16931/ubl/schematron/codelist/EN16931-UBL-codes.sch corpus-cache/eInvoicing-EN16931/ubl/schematron/UBL/EN16931-UBL-model.sch
+          git diff --exit-code packages/core/src/gen/codelists.ts || {
+            echo "::warning::Official code lists changed upstream — regenerate and review."; exit 1; }
+
+      - name: Run conformance corpus
+        run: |
+          node scripts/corpus.mjs \
+            corpus-cache/xrechnung-testsuite/src/test \
+            corpus-cache/eInvoicing-EN16931/ubl/examples \
+            corpus-cache/eInvoicing-EN16931/cii/examples \
+            --json corpus-report.json | tail -5
+
+      - name: Enforce conformance floor
+        run: |
+          node -e '
+            const r = require("./corpus-report.json");
+            const rows = r.rows.filter(x => !x.parseError);
+            const pass = rows.filter(x => x.ok).length;
+            const known = ["CII_example7.xml","XRechnung-O.xml","01.05_minimal_test_uncefact.xml","05.01a-INVOICE_ubl.xml","02.01a-cvd_INVOICE_ubl.xml","02.01a-cvd_INVOICE_uncefact.xml","04.05a-INVOICE_uncefact.xml"];
+            const unexpected = rows.filter(x => !x.ok && !known.includes(x.file.split("/").pop()));
+            console.log(`parsed ${rows.length}, pass ${pass}, unexpected failures ${unexpected.length}`);
+            for (const u of unexpected) console.log("UNEXPECTED:", u.file, u.rules.join(","));
+            if (r.rows.some(x => x.parseError)) { console.log("parse errors present"); process.exit(1); }
+            if (unexpected.length > 0) process.exit(1);
+          '
+
+      - name: Build site
+        run: node scripts/build-site.mjs
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site-dist
+
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    needs: test
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

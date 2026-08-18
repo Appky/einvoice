@@ -1,0 +1,42 @@
+{
+  "name": "einvoice-mcp",
+  "version": "0.1.0",
+  "description": "MCP server that lets AI agents read and validate EU e-invoices (EN 16931, XRechnung, Factur-X/ZUGFeRD, UBL, CII, Peppol) locally — no uploads, no Java.",
+  "type": "module",
+  "bin": {
+    "einvoice-mcp": "./dist/server.js"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json && node -e \"const fs=require('fs');const p='dist/server.js';fs.writeFileSync(p,'#!/usr/bin/env node\\n'+fs.readFileSync(p,'utf8'));fs.chmodSync(p,0o755)\"",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "einvoice": "^0.1.0"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "e-invoice",
+    "en16931",
+    "xrechnung",
+    "factur-x",
+    "zugferd",
+    "invoice",
+    "validation",
+    "agent"
+  ],
+  "author": "Juraj (appky.sk) and Claude (Anthropic)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jurco321/einvoice.git"
+  },
+  "homepage": "https://jurco321.github.io/einvoice/",
+  "engines": {
+    "node": ">=18"
+  }
+}

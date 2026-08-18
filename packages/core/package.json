@@ -1,0 +1,53 @@
+{
+  "name": "einvoice",
+  "version": "0.1.0",
+  "description": "EU e-invoicing toolkit for JavaScript/TypeScript: parse, validate (EN 16931 business rules), and render UBL, CII, Factur-X/ZUGFeRD and XRechnung invoices. Zero dependencies, runs in Node, browsers and edge runtimes.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest run"
+  },
+  "keywords": [
+    "e-invoice",
+    "einvoice",
+    "en16931",
+    "xrechnung",
+    "factur-x",
+    "facturx",
+    "zugferd",
+    "ubl",
+    "cii",
+    "peppol",
+    "invoice",
+    "validation",
+    "vat",
+    "e-rechnung",
+    "e-invoicing"
+  ],
+  "author": "Juraj (appky.sk) and Claude (Anthropic)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jurco321/einvoice.git"
+  },
+  "homepage": "https://jurco321.github.io/einvoice/",
+  "bugs": {
+    "url": "https://github.com/jurco321/einvoice/issues"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
