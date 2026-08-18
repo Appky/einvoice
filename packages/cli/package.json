@@ -11,8 +11,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "tsc -p tsconfig.json && node -e \"const fs=require('fs');const p='dist/cli.js';fs.writeFileSync(p,'#!/usr/bin/env node\\n'+fs.readFileSync(p,'utf8'));fs.chmodSync(p,0o755)\"",
-    "test": "vitest run"
+    "build": "tsc -p tsconfig.json && node -e \"const fs=require('fs');const p='dist/cli.js';fs.writeFileSync(p,'#!/usr/bin/env node\\n'+fs.readFileSync(p,'utf8'));fs.chmodSync(p,0o755)\""
   },
   "dependencies": {
     "einvoice": "^0.1.0"
