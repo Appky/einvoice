@@ -162,7 +162,7 @@ You get a readable invoice and a full <strong>EN&nbsp;16931</strong> business-ru
 <h3>My accounting software produced an invalid invoice. What now?</h3>
 <p>Each finding names the official rule and explains it in plain terms — send both to your software vendor. The rule IDs (like BR-CO-15) are the standard vocabulary every e-invoicing implementer understands.</p>
 <h3>Can I validate many invoices at once?</h3>
-<p>Use the CLI: <code>npx einvoice-cli validate *.xml</code> — same engine, exit codes for CI pipelines. <a href="docs.html">Details.</a></p>
+<p>Use the CLI: <code>npx einvoice-kit validate *.xml</code> — same engine, exit codes for CI pipelines. <a href="docs.html">Details.</a></p>
 `,
 });
 
@@ -201,16 +201,16 @@ console.log(renderText(invoice));          // human-readable summary</code></pre
 <p>The parser is namespace-aware and immune to XXE by construction (no DOCTYPE, no entity expansion). All rule arithmetic uses exact BigInt decimals — no floating-point VAT surprises. Amounts keep their lexical form, so decimal-precision rules (BR-DEC) behave exactly like the official Schematron.</p>
 
 <h2>CLI</h2>
-<pre><code>npx einvoice-cli validate invoice.xml      # exit 1 on violations — CI-friendly
-npx einvoice-cli validate --json *.xml     # machine-readable findings
-npx einvoice-cli show facture.pdf          # readable summary of a Factur-X PDF
-npx einvoice-cli inspect invoice.xml       # full semantic model as JSON</code></pre>
+<pre><code>npx einvoice-kit validate invoice.xml      # exit 1 on violations — CI-friendly
+npx einvoice-kit validate --json *.xml     # machine-readable findings
+npx einvoice-kit show facture.pdf          # readable summary of a Factur-X PDF
+npx einvoice-kit inspect invoice.xml       # full semantic model as JSON</code></pre>
 
 <h2>MCP server (AI agents)</h2>
 <p>Give any MCP-capable agent the ability to read and validate e-invoices locally:</p>
 <pre><code>{
   "mcpServers": {
-    "einvoice": { "command": "npx", "args": ["-y", "einvoice-mcp"] }
+    "einvoice": { "command": "npx", "args": ["-y", "einvoice-kit-mcp"] }
   }
 }</code></pre>
 <p>Tools: <code>validate_invoice</code> and <code>read_invoice</code> — both accept XML content or a file path, including Factur-X PDFs. Invoice data never leaves the machine.</p>

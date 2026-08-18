@@ -1,10 +1,10 @@
 {
-  "name": "einvoice-mcp",
-  "version": "0.1.0",
+  "name": "einvoice-kit-mcp",
+  "version": "0.1.1",
   "description": "MCP server that lets AI agents read and validate EU e-invoices (EN 16931, XRechnung, Factur-X/ZUGFeRD, UBL, CII, Peppol) locally — no uploads, no Java.",
   "type": "module",
   "bin": {
-    "einvoice-mcp": "./dist/server.js"
+    "einvoice-kit-mcp": "./dist/server.js"
   },
   "files": [
     "dist",
@@ -14,7 +14,7 @@
     "build": "tsc -p tsconfig.json && node -e \"const fs=require('fs');const p='dist/server.js';fs.writeFileSync(p,'#!/usr/bin/env node\\n'+fs.readFileSync(p,'utf8'));fs.chmodSync(p,0o755)\""
   },
   "dependencies": {
-    "einvoice-kit": "^0.1.0"
+    "einvoice-kit": "^0.1.1"
   },
   "keywords": [
     "mcp",

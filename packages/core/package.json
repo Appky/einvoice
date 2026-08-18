@@ -1,6 +1,9 @@
 {
   "name": "einvoice-kit",
-  "version": "0.1.0",
+  "version": "0.1.1",
+  "bin": {
+    "einvoice-kit": "./dist/cli.js"
+  },
   "description": "EU e-invoicing toolkit for JavaScript/TypeScript: parse, validate (EN 16931 business rules), and render UBL, CII, Factur-X/ZUGFeRD and XRechnung invoices. Zero dependencies, runs in Node, browsers and edge runtimes.",
   "type": "module",
   "main": "./dist/index.js",
@@ -17,7 +20,7 @@
     "LICENSE"
   ],
   "scripts": {
-    "build": "tsc -p tsconfig.json",
+    "build": "tsc -p tsconfig.json && node -e \"const fs=require('fs');const p='dist/cli.js';fs.writeFileSync(p,'#!/usr/bin/env node\\n'+fs.readFileSync(p,'utf8'));fs.chmodSync(p,0o755)\"",
     "test": "vitest run"
   },
   "keywords": [

@@ -1,10 +1,10 @@
-# einvoice-mcp
+# einvoice-kit-mcp
 
 MCP (Model Context Protocol) server that lets AI agents **read and validate EU
 e-invoices locally**: EN 16931, XRechnung, Factur-X/ZUGFeRD, UBL, CII, Peppol BIS.
 
 ```jsonc
-{ "mcpServers": { "einvoice": { "command": "npx", "args": ["-y", "einvoice-mcp"] } } }
+{ "mcpServers": { "einvoice": { "command": "npx", "args": ["-y", "einvoice-kit-mcp"] } } }
 ```
 
 Tools:

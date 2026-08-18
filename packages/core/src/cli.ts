@@ -1,16 +1,16 @@
 /**
  * einvoice CLI — validate and read EU e-invoices from the terminal.
  *
- *   einvoice validate invoice.xml [more...]   exit 1 if any file is invalid
- *   einvoice show invoice.pdf                 human-readable summary
- *   einvoice inspect invoice.xml              semantic model as JSON
+ *   einvoice-kit validate invoice.xml [more...]   exit 1 if any file is invalid
+ *   einvoice-kit show invoice.pdf                 human-readable summary
+ *   einvoice-kit inspect invoice.xml              semantic model as JSON
  *
  * Flags: --json (machine output), --html (with show), --quiet, --no-color
  */
 
 import { readFileSync } from "node:fs";
 import process from "node:process";
-import { parseInvoice, validate, renderText, renderHtml, VERSION, type Finding } from "einvoice-kit";
+import { parseInvoice, validate, renderText, renderHtml, VERSION, type Finding } from "./index.js";
 
 const args = process.argv.slice(2);
 const flags = new Set(args.filter((a: string) => a.startsWith("--")));
@@ -25,12 +25,12 @@ const yellow = (s: string) => (useColor ? `\x1b[33m${s}\x1b[0m` : s);
 const dim = (s: string) => (useColor ? `\x1b[2m${s}\x1b[0m` : s);
 
 function usage(code: number): never {
-  console.log(`einvoice ${VERSION} — EU e-invoice validator and viewer (EN 16931)
+  console.log(`einvoice-kit ${VERSION} — EU e-invoice validator and viewer (EN 16931)
 
 Usage:
-  einvoice validate <file...>   Validate against the EN 16931 business rules
-  einvoice show <file>          Human-readable invoice summary (--html for HTML)
-  einvoice inspect <file>       Print the parsed semantic model as JSON
+  einvoice-kit validate <file...>   Validate against the EN 16931 business rules
+  einvoice-kit show <file>          Human-readable invoice summary (--html for HTML)
+  einvoice-kit inspect <file>       Print the parsed semantic model as JSON
 
 Options:
   --json       Machine-readable output

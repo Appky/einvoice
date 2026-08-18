@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.1 — 2026-08-18
+
+- Package naming settled after npm registry conflicts: the library publishes as
+  **einvoice-kit** (npm blocks `einvoice` as too similar to `e-invoice`), the
+  CLI now ships **inside** the library package (`npx einvoice-kit validate …` —
+  the previously planned `einvoice-cli` name is owned by an unrelated tool), and
+  the MCP server publishes as **einvoice-kit-mcp**.
+
 ## 0.1.0 — 2026-08-18
 
 Initial release.
@@ -14,7 +22,7 @@ Initial release.
 - Zero-dependency namespace-aware XML parser, XXE-immune by construction
 - Exact BigInt fixed-point decimal arithmetic
 - Text and standalone-HTML renderers
-- `einvoice-cli`: validate / show / inspect with JSON output and CI exit codes
-- `einvoice-mcp`: MCP server exposing validate_invoice and read_invoice
+- `einvoice-kit`: validate / show / inspect with JSON output and CI exit codes
+- `einvoice-kit-mcp`: MCP server exposing validate_invoice and read_invoice
 - Conformance: 120 official corpus files (ConnectingEurope + KoSIT), every
   non-passing file annotated; corpus re-run weekly in CI

@@ -43,7 +43,7 @@ JS developers shell out to Java or POST sensitive invoices to third-party APIs.
 
 ```bash
 npm install einvoice-kit        # library
-npm install -g einvoice-cli # CLI (or use npx)
+# the CLI ships inside the package: npx einvoice-kit validate invoice.xml
 ```
 
 ## Library
@@ -71,17 +71,17 @@ console.log(renderText(invoice)); // human-readable summary (also renderHtml)
 ## CLI
 
 ```bash
-einvoice validate invoice.xml            # findings + exit code 1 if invalid
-einvoice validate --json *.xml           # machine-readable, CI-friendly
-einvoice show facture.pdf                # read a Factur-X PDF like a human
-einvoice inspect invoice.xml             # semantic model as JSON
+einvoice-kit validate invoice.xml            # findings + exit code 1 if invalid
+einvoice-kit validate --json *.xml           # machine-readable, CI-friendly
+einvoice-kit show facture.pdf                # read a Factur-X PDF like a human
+einvoice-kit inspect invoice.xml             # semantic model as JSON
 ```
 
 ## MCP server (AI agents)
 
 ```jsonc
 // e.g. Claude Desktop / any MCP client
-{ "mcpServers": { "einvoice": { "command": "npx", "args": ["-y", "einvoice-mcp"] } } }
+{ "mcpServers": { "einvoice": { "command": "npx", "args": ["-y", "einvoice-kit-mcp"] } } }
 ```
 
 Tools `validate_invoice` and `read_invoice` accept XML content or a file path

@@ -1,5 +1,5 @@
 /**
- * einvoice-mcp — Model Context Protocol server exposing e-invoice reading
+ * einvoice-kit-mcp — Model Context Protocol server exposing e-invoice reading
  * and validation to AI agents, over stdio (newline-delimited JSON-RPC 2.0).
  *
  * Tools:
@@ -103,7 +103,7 @@ rl.on("line", (line) => {
           reply(req.id, {
             protocolVersion: requested,
             capabilities: { tools: {} },
-            serverInfo: { name: "einvoice-mcp", version: VERSION },
+            serverInfo: { name: "einvoice-kit-mcp", version: VERSION },
           });
           break;
         }
