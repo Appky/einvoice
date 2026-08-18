@@ -89,7 +89,7 @@ ${body}
 <footer class="site">
   <div class="wrap">
     <div>MIT-licensed open source. Validation results are informational, not legal or tax advice.</div>
-    <div><a href="https://github.com/jurco321/einvoice">Source &amp; issues</a> · <a href="https://www.npmjs.com/package/einvoice">npm</a></div>
+    <div><a href="https://github.com/jurco321/einvoice">Source &amp; issues</a> · <a href="https://www.npmjs.com/package/einvoice-kit">npm</a></div>
   </div>
 </footer>
 ${scripts}
@@ -183,7 +183,7 @@ const docs = page({
 
 <h2>Library</h2>
 <pre><code>npm install einvoice</code></pre>
-<pre><code>import { parseInvoice, validate, renderText } from "einvoice";
+<pre><code>import { parseInvoice, validate, renderText } from "einvoice-kit";
 
 // UBL XML, CII XML, or a Factur-X/ZUGFeRD PDF — auto-detected
 const { invoice, format, profile } = await parseInvoice(bytes);

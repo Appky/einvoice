@@ -7,7 +7,7 @@ Peppol BIS** — with zero dependencies, in Node ≥ 18, browsers and edge runti
 **Try it in your browser (nothing is uploaded): https://jurco321.github.io/einvoice/**
 
 [![CI](https://github.com/jurco321/einvoice/actions/workflows/ci.yml/badge.svg)](https://github.com/jurco321/einvoice/actions/workflows/ci.yml)
-[![npm](https://img.shields.io/npm/v/einvoice)](https://www.npmjs.com/package/einvoice)
+[![npm](https://img.shields.io/npm/v/einvoice-kit)](https://www.npmjs.com/package/einvoice-kit)
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 ## Why
@@ -42,14 +42,14 @@ JS developers shell out to Java or POST sensitive invoices to third-party APIs.
 ## Install
 
 ```bash
-npm install einvoice        # library
+npm install einvoice-kit        # library
 npm install -g einvoice-cli # CLI (or use npx)
 ```
 
 ## Library
 
 ```ts
-import { parseInvoice, validate, renderText } from "einvoice";
+import { parseInvoice, validate, renderText } from "einvoice-kit";
 
 // Accepts UBL XML, CII XML, or Factur-X/ZUGFeRD PDF bytes — auto-detected
 const { invoice, format, profile } = await parseInvoice(bytes);

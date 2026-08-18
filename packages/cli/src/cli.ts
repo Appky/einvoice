@@ -10,7 +10,7 @@
 
 import { readFileSync } from "node:fs";
 import process from "node:process";
-import { parseInvoice, validate, renderText, renderHtml, VERSION, type Finding } from "einvoice";
+import { parseInvoice, validate, renderText, renderHtml, VERSION, type Finding } from "einvoice-kit";
 
 const args = process.argv.slice(2);
 const flags = new Set(args.filter((a: string) => a.startsWith("--")));

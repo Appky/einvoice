@@ -15,7 +15,7 @@ Tools:
   data (parties, lines, VAT breakdown, totals, payment details).
 
 Invoice data never leaves the machine. Zero dependencies beyond the MIT-licensed
-[einvoice](https://www.npmjs.com/package/einvoice) engine, which is tested against
+[einvoice](https://www.npmjs.com/package/einvoice-kit) engine, which is tested against
 120 official EU/KoSIT corpus files.
 
 Full documentation: https://github.com/jurco321/einvoice

@@ -8,7 +8,7 @@
  *
  * @example
  * ```ts
- * import { parseInvoice, validate, renderText } from "einvoice";
+ * import { parseInvoice, validate, renderText } from "einvoice-kit";
  *
  * const { invoice, format, profile } = await parseInvoice(xmlOrPdfBytes);
  * const result = validate(invoice);

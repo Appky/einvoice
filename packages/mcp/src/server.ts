@@ -13,7 +13,7 @@
 import { createInterface } from "node:readline";
 import { readFileSync } from "node:fs";
 import process from "node:process";
-import { parseInvoice, validate, renderText, VERSION } from "einvoice";
+import { parseInvoice, validate, renderText, VERSION } from "einvoice-kit";
 
 interface JsonRpcRequest {
   jsonrpc: "2.0";
