@@ -4,9 +4,9 @@
 EN 16931 electronic invoices — **XRechnung, Factur-X/ZUGFeRD, UBL 2.1, UN/CEFACT CII,
 Peppol BIS** — with zero dependencies, in Node ≥ 18, browsers and edge runtimes.
 
-**Try it in your browser (nothing is uploaded): https://jurco321.github.io/einvoice/**
+**Try it in your browser (nothing is uploaded): https://whatwemake.github.io/einvoice/**
 
-[![CI](https://github.com/jurco321/einvoice/actions/workflows/ci.yml/badge.svg)](https://github.com/jurco321/einvoice/actions/workflows/ci.yml)
+[![CI](https://github.com/whatwemake/einvoice/actions/workflows/ci.yml/badge.svg)](https://github.com/whatwemake/einvoice/actions/workflows/ci.yml)
 [![npm](https://img.shields.io/npm/v/einvoice-kit)](https://www.npmjs.com/package/einvoice-kit)
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
@@ -29,7 +29,7 @@ JS developers shell out to Java or POST sensitive invoices to third-party APIs.
   validation artefacts.
 - **Official semantics**: rounding, ±1 tolerances and absent-term handling mirror the
   official Schematron expressions — verified against **120 official test files** from
-  the EU and KoSIT corpora in CI ([conformance report](https://jurco321.github.io/einvoice/conformance.html)).
+  the EU and KoSIT corpora in CI ([conformance report](https://whatwemake.github.io/einvoice/conformance.html)).
 - **Exact arithmetic**: BigInt fixed-point decimals; no IEEE-754 VAT surprises.
 - **One semantic model**: UBL and CII map to the same typed model (every field
   documented with its BT/BG number), so rules are written once and findings are

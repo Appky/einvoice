@@ -1,6 +1,6 @@
 {
   "name": "einvoice-kit",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "bin": {
     "einvoice-kit": "./dist/cli.js"
   },
@@ -44,11 +44,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jurco321/einvoice.git"
+    "url": "git+https://github.com/whatwemake/einvoice.git"
   },
-  "homepage": "https://jurco321.github.io/einvoice/",
+  "homepage": "https://whatwemake.github.io/einvoice/",
   "bugs": {
-    "url": "https://github.com/jurco321/einvoice/issues"
+    "url": "https://github.com/whatwemake/einvoice/issues"
   },
   "engines": {
     "node": ">=18"

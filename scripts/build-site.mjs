@@ -15,7 +15,7 @@ const root = join(here, "..");
 const out = join(root, "site-dist");
 mkdirSync(out, { recursive: true });
 
-const BASE = "https://jurco321.github.io/einvoice";
+const BASE = "https://whatwemake.github.io/einvoice";
 const TODAY = new Date().toISOString().slice(0, 10);
 
 // 1) Browser bundle of the core library.
@@ -65,7 +65,7 @@ ${JSON.stringify({
   offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
   description,
   url: BASE + "/",
-  softwareHelp: "https://github.com/jurco321/einvoice",
+  softwareHelp: "https://github.com/whatwemake/einvoice",
   license: "https://opensource.org/licenses/MIT",
 })}
 </script>
@@ -79,7 +79,7 @@ ${JSON.stringify({
       <a href="./"${current === "home" ? ' aria-current="page"' : ""}>Validator</a>
       <a href="docs.html"${current === "docs" ? ' aria-current="page"' : ""}>Developers</a>
       <a href="conformance.html"${current === "conformance" ? ' aria-current="page"' : ""}>Conformance</a>
-      <a href="https://github.com/jurco321/einvoice">GitHub</a>
+      <a href="https://github.com/whatwemake/einvoice">GitHub</a>
     </nav>
   </div>
 </header>
@@ -89,7 +89,7 @@ ${body}
 <footer class="site">
   <div class="wrap">
     <div>MIT-licensed open source. Validation results are informational, not legal or tax advice.</div>
-    <div><a href="https://github.com/jurco321/einvoice">Source &amp; issues</a> · <a href="https://www.npmjs.com/package/einvoice-kit">npm</a></div>
+    <div><a href="https://github.com/whatwemake/einvoice">Source &amp; issues</a> · <a href="https://www.npmjs.com/package/einvoice-kit">npm</a></div>
   </div>
 </footer>
 ${scripts}
@@ -117,7 +117,7 @@ You get a readable invoice and a full <strong>EN&nbsp;16931</strong> business-ru
     <button id="try-sample" class="primary" type="button">Try a sample invoice</button>
   </div>
 </div>
-<p class="privacy">🔒 Everything runs locally in this tab. Your invoice is <strong>never uploaded</strong> — this page makes no network requests with your data and uses no analytics. <a href="https://github.com/jurco321/einvoice">Verify the source.</a></p>
+<p class="privacy">🔒 Everything runs locally in this tab. Your invoice is <strong>never uploaded</strong> — this page makes no network requests with your data and uses no analytics. <a href="https://github.com/whatwemake/einvoice">Verify the source.</a></p>
 
 <div id="result" aria-live="polite"></div>
 
@@ -158,7 +158,7 @@ You get a readable invoice and a full <strong>EN&nbsp;16931</strong> business-ru
 <h3>Is my invoice uploaded anywhere?</h3>
 <p>No. The validator is a static page; your file is read by JavaScript in your browser and never leaves your machine. There is no server to upload to, no analytics, no cookies.</p>
 <h3>Which rules are checked?</h3>
-<p>The EN 16931 business rules: mandatory fields (BR-*), totals arithmetic (BR-CO-*), decimal precision (BR-DEC-*), all ten VAT category rule groups (standard, zero, exempt, reverse charge, intra-community, export, IGIC, IPSI, not-subject, split payment) and the code list rules (BR-CL-*) — about 165 rules. National extensions such as XRechnung's BR-DE rules are on the <a href="https://github.com/jurco321/einvoice#roadmap">roadmap</a>.</p>
+<p>The EN 16931 business rules: mandatory fields (BR-*), totals arithmetic (BR-CO-*), decimal precision (BR-DEC-*), all ten VAT category rule groups (standard, zero, exempt, reverse charge, intra-community, export, IGIC, IPSI, not-subject, split payment) and the code list rules (BR-CL-*) — about 165 rules. National extensions such as XRechnung's BR-DE rules are on the <a href="https://github.com/whatwemake/einvoice#roadmap">roadmap</a>.</p>
 <h3>My accounting software produced an invalid invoice. What now?</h3>
 <p>Each finding names the official rule and explains it in plain terms — send both to your software vendor. The rule IDs (like BR-CO-15) are the standard vocabulary every e-invoicing implementer understands.</p>
 <h3>Can I validate many invoices at once?</h3>

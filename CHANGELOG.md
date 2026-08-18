@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.2 — 2026-08-18
+
+- Project moved to the whatwemake GitHub organization; repository, site and
+  package metadata URLs updated (github.com/whatwemake/einvoice,
+  whatwemake.github.io/einvoice).
+
 ## 0.1.1 — 2026-08-18
 
 - Package naming settled after npm registry conflicts: the library publishes as
