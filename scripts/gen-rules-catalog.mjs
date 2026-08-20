@@ -10,22 +10,22 @@ import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const [modelPath, codesPath] = process.argv.slice(2);
-if (!modelPath || !codesPath) {
+const paths = process.argv.slice(2);
+if (paths.length < 2) {
   console.error("usage: gen-rules-catalog.mjs <model.sch> <codes.sch>");
   process.exit(1);
 }
 
 const rules = new Map();
-for (const path of [modelPath, codesPath]) {
+for (const path of paths) {
   const src = readFileSync(path, "utf8");
-  for (const m of src.matchAll(/<assert[^>]*?flag="(\w+)"[^>]*?id="(BR[A-Z0-9-]*)"[^>]*>\s*\[[^\]]+\]\s*-?\s*([\s\S]*?)<\/assert>/g)) {
+  for (const m of src.matchAll(/<assert[^>]*?flag="(\w+)"[^>]*?id="(BR[A-Za-z0-9-]*)"[^>]*>\s*\[[^\]]+\]\s*-?\s*([\s\S]*?)<\/assert>/g)) {
     const [, flag, id, rawText] = m;
     const text = rawText.replace(/\s+/g, " ").trim();
     if (!rules.has(id)) rules.set(id, { severity: flag === "warning" ? "warning" : "fatal", text });
   }
   // Attribute order variant: id before flag.
-  for (const m of src.matchAll(/<assert[^>]*?id="(BR[A-Z0-9-]*)"[^>]*?flag="(\w+)"[^>]*>\s*\[[^\]]+\]\s*-?\s*([\s\S]*?)<\/assert>/g)) {
+  for (const m of src.matchAll(/<assert[^>]*?id="(BR[A-Za-z0-9-]*)"[^>]*?flag="(\w+)"[^>]*>\s*\[[^\]]+\]\s*-?\s*([\s\S]*?)<\/assert>/g)) {
     const [, id, flag, rawText] = m;
     const text = rawText.replace(/\s+/g, " ").trim();
     if (!rules.has(id)) rules.set(id, { severity: flag === "warning" ? "warning" : "fatal", text });

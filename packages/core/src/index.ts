@@ -42,3 +42,5 @@ export const VERSION = "0.1.0";
 export { ruleCatalog, type CatalogEntry } from "./rules-fixes.js";
 export { RULE_TEXTS, type RuleInfo } from "./gen/rules-catalog.js";
 export { XML_LIMITS } from "./xml.js";
+export { isXRechnung, isValidIban, xrechnungRules } from "./rules-xrechnung.js";
+export type { ValidateOptions } from "./validate.js";

@@ -153,3 +153,37 @@ describe("parser hardening limits", () => {
     expect(() => parseXml(wide)).toThrow(/elements/);
   });
 });
+
+describe("XRechnung (BR-DE) pack", () => {
+  const XR = (extra = "") =>
+    MINIMAL_UBL().replace(
+      "urn:cen.eu:en16931:2017",
+      "urn:cen.eu:en16931:2017#compliant#urn:xeinkauf.de:kosit:xrechnung_3.0",
+    ) && MINIMAL_UBL().replace(
+      "<cbc:CustomizationID>urn:cen.eu:en16931:2017</cbc:CustomizationID>",
+      `<cbc:CustomizationID>urn:cen.eu:en16931:2017#compliant#urn:xeinkauf.de:kosit:xrechnung_3.0</cbc:CustomizationID>${extra}`,
+    );
+
+  it("activates only for XRechnung profiles", () => {
+    const plain = validate(parseInvoiceXml(MINIMAL_UBL()).invoice);
+    expect(plain.findings.map((f) => f.rule).filter((r) => r.startsWith("BR-DE"))).toEqual([]);
+    const xr = validate(parseInvoiceXml(XR()).invoice);
+    const deRules = xr.findings.map((f) => f.rule).filter((r) => r.startsWith("BR-DE"));
+    expect(deRules).toContain("BR-DE-1"); // no payment instructions
+    expect(deRules).toContain("BR-DE-2"); // no seller contact
+    expect(deRules).toContain("BR-DE-15"); // no buyer reference
+  });
+
+  it("can be forced via options", () => {
+    const res = validate(parseInvoiceXml(MINIMAL_UBL()).invoice, { profile: "xrechnung" });
+    expect(res.findings.map((f) => f.rule)).toContain("BR-DE-15");
+  });
+
+  it("validates IBANs per ISO 13616", async () => {
+    const { isValidIban } = await import("../src/rules-xrechnung.js");
+    expect(isValidIban("DE89370400440532013000")).toBe(true);
+    expect(isValidIban("SK3112000000198742637541")).toBe(true);
+    expect(isValidIban("DE89370400440532013001")).toBe(false);
+    expect(isValidIban("NOT-AN-IBAN")).toBe(false);
+  });
+});

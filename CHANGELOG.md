@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.2.0 — 2026-08-20
+
+- **XRechnung rule pack (BR-DE)**: 31 national rules implemented natively —
+  seller contact requirements, Leitweg-ID (BT-10), payment-means group
+  consistency (BR-DE-23..25), IBAN checksum validation (ISO 13616), Skonto
+  payment-terms format, unique attachment filenames and more. Applied
+  automatically when BT-24 declares XRechnung; forceable via
+  `validate(inv, { profile: "xrechnung" })`.
+- All 81 valid files of the official KoSIT XRechnung test suite pass the pack
+  with zero false positives; mutation tests cover activation and key rules.
+- Official German rule texts included in the rules reference.
+
 ## 0.1.4 — 2026-08-20
 
 - New: complete EN 16931 rules reference (223 rules, official text + practical

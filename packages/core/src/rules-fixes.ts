@@ -16,6 +16,12 @@ export interface CatalogEntry extends RuleInfo {
 }
 
 const FIXES: Record<string, string> = {
+  "BR-DE-1": "XRechnung invoices must state how to pay: add payment instructions (BG-16) with at least a payment means code (BT-81), typically 58 (SEPA credit transfer) plus an IBAN.",
+  "BR-DE-2": "Add a seller contact group: a contact person or department (BT-41), phone (BT-42) and e-mail (BT-43) are all mandatory in XRechnung.",
+  "BR-DE-15": "BT-10 (buyer reference) is mandatory in XRechnung. For German public-sector buyers this is the Leitweg-ID they gave you; B2G platforms reject invoices without it.",
+  "BR-DE-21": "Use the full XRechnung customization id in BT-24, e.g. urn:cen.eu:en16931:2017#compliant#urn:xeinkauf.de:kosit:xrechnung_3.0.",
+  "BR-DE-23-a": "Payment means 30/58 (credit transfer) require the bank account group: add the IBAN in BT-84.",
+  "BR-DE-30": "Direct debit (code 59) needs the SEPA creditor identifier (BT-90). In UBL it goes in the seller party identification with schemeID=\"SEPA\".",
   "BR-01": "Set the specification identifier (UBL: CustomizationID, CII: GuidelineSpecifiedDocumentContextParameter). For plain EN 16931 use \"urn:cen.eu:en16931:2017\"; XRechnung and Peppol have their own values.",
   "BR-02": "Every invoice needs an invoice number (BT-1). Check the field mapping in your invoicing software — this is almost always a mapping bug, not a business problem.",
   "BR-03": "Add the issue date (BT-2). UBL expects YYYY-MM-DD; CII uses DateTimeString with format=\"102\" and YYYYMMDD.",
@@ -76,6 +82,7 @@ const FIXES: Record<string, string> = {
 };
 
 const GROUPS: Array<[RegExp, string]> = [
+  [/^BR-DE/, "XRechnung (BR-DE)"],
   [/^BR-CL-/, "Code lists (BR-CL)"],
   [/^BR-CO-/, "Calculations & conditions (BR-CO)"],
   [/^BR-DEC-/, "Decimal precision (BR-DEC)"],

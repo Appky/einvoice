@@ -116,7 +116,7 @@ implementer understands.
 | Embeddable as a library | ✅ npm | ❌ | ✅ (Java only) | via HTTP |
 | Explained errors with numbers | ✅ | varies | ❌ raw Schematron | varies |
 | Cost | free, MIT | free (lead-gen) | free | metered |
-| National CIUS packs (BR-DE, Peppol) | 🔜 roadmap | some | ✅ | some |
+| National CIUS packs | ✅ XRechnung BR-DE (Peppol 🔜) | some | ✅ | some |
 
 The official artefacts and the Java reference stack remain the gold standard —
 our conformance suite measures against them, and honest gaps are listed in the
@@ -126,14 +126,13 @@ our conformance suite measures against them, and honest gaps are listed in the
 
 - No XSD schema validation (the semantic rules catch interoperability issues;
   schema validation is planned behind a flag).
-- No national CIUS rule sets yet: XRechnung **BR-DE-\***, Peppol **PEPPOL-EN16931-R\***
-  are the top roadmap items.
+- Peppol rules (**PEPPOL-EN16931-R\***) are the next CIUS pack; XRechnung **BR-DE** ships since v0.2.0.
 - No invoice **generation** yet (model → XML) — roadmap.
 - Not legal or tax advice; findings are informational.
 
 ## Roadmap
 
-1. XRechnung (BR-DE) and Peppol BIS rule packs, selected via the detected profile
+1. Peppol BIS rule pack (XRechnung BR-DE shipped in v0.2.0)
 2. Invoice generation: semantic model → valid UBL/CII (+ Factur-X embedding)
 3. German/Slovak/French UI for the browser validator
 4. XSD validation option, KSeF (PL) and UBL-SI mappings as demand shows

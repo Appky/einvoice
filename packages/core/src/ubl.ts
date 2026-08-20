@@ -320,6 +320,14 @@ export function mapUbl(root: XmlElement): Invoice {
   }
 
   inv.payment = mapPayment(root);
+  // BT-90 (SEPA bank assigned creditor identifier): a seller/payee
+  // PartyIdentification with schemeID="SEPA".
+  const sepaCreditor = [inv.payee, inv.seller]
+    .flatMap((p) => p?.identifiers ?? [])
+    .find((id) => id.scheme === "SEPA");
+  if (sepaCreditor && inv.payment) {
+    inv.payment.directDebit = { ...(inv.payment.directDebit ?? {}), creditorId: sepaCreditor.value };
+  }
   inv.allowancesCharges = root.all(CAC, "AllowanceCharge").map((a) => mapAllowanceCharge(a, true));
 
   const totalsEl = root.get(CAC, "LegalMonetaryTotal");
