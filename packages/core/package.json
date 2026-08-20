@@ -2,7 +2,7 @@
   "name": "einvoice-kit",
   "version": "0.1.3",
   "bin": {
-    "einvoice-kit": "./dist/cli.js"
+    "einvoice-kit": "dist/cli.js"
   },
   "description": "EU e-invoicing toolkit for JavaScript/TypeScript: parse, validate (EN 16931 business rules), and render UBL, CII, Factur-X/ZUGFeRD and XRechnung invoices. Zero dependencies, runs in Node, browsers and edge runtimes.",
   "type": "module",
