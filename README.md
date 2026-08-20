@@ -1,10 +1,20 @@
 # einvoice
 
-**The EU e-invoicing toolkit for JavaScript/TypeScript.** Parse, validate and render
-EN 16931 electronic invoices — **XRechnung, Factur-X/ZUGFeRD, UBL 2.1, UN/CEFACT CII,
-Peppol BIS** — with zero dependencies, in Node ≥ 18, browsers and edge runtimes.
+Read, check and debug EU e-invoices — without uploading them anywhere.
 
-**Try it in your browser (nothing is uploaded): https://appky.github.io/einvoice/**
+`einvoice-kit` is a zero-dependency TypeScript library, CLI and MCP server that
+parses, validates and renders EN 16931 electronic invoices: **XRechnung,
+Factur-X/ZUGFeRD (PDF), UBL 2.1, UN/CEFACT CII, Peppol BIS**. It runs in
+Node ≥ 18, browsers and edge runtimes, and implements the standard's business
+rules natively — no Java, no SaaS API, no invoice ever leaves your machine.
+
+```bash
+npx einvoice-kit validate invoice.xml     # every violation, explained
+npx einvoice-kit show facture.pdf         # read a Factur-X PDF like a human
+```
+
+**Browser version (drag & drop, nothing uploaded): https://appky.github.io/einvoice/**
+**Every rule explained: https://appky.github.io/einvoice/rules.html**
 
 [![CI](https://github.com/Appky/einvoice/actions/workflows/ci.yml/badge.svg)](https://github.com/Appky/einvoice/actions/workflows/ci.yml)
 [![npm](https://img.shields.io/npm/v/einvoice-kit)](https://www.npmjs.com/package/einvoice-kit)
@@ -85,7 +95,32 @@ einvoice-kit inspect invoice.xml             # semantic model as JSON
 ```
 
 Tools `validate_invoice` and `read_invoice` accept XML content or a file path
-(including Factur-X PDFs) and run entirely locally.
+(including Factur-X PDFs) and run entirely locally. If you build agents that
+touch invoices, see [AGENTS.md](AGENTS.md) and the machine-readable summary at
+[llms.txt](https://appky.github.io/einvoice/llms.txt).
+
+## When an invoice fails validation
+
+Every finding carries the official rule id, a plain-language hint with the
+actual numbers, and a link into the [rules reference](https://appky.github.io/einvoice/rules.html) —
+all 223 EN 16931 rules with official text and practical fixes. Send the rule id
+to your software vendor; it is the standard vocabulary every e-invoicing
+implementer understands.
+
+## How it compares
+
+| | einvoice-kit | Upload validators (web) | Java stack (KoSIT/Mustang) | SaaS validation APIs |
+|---|---|---|---|---|
+| Invoice stays on your machine | ✅ | ❌ uploaded | ✅ | ❌ uploaded |
+| Runs in browser / edge | ✅ | n/a | ❌ JVM | n/a |
+| Embeddable as a library | ✅ npm | ❌ | ✅ (Java only) | via HTTP |
+| Explained errors with numbers | ✅ | varies | ❌ raw Schematron | varies |
+| Cost | free, MIT | free (lead-gen) | free | metered |
+| National CIUS packs (BR-DE, Peppol) | 🔜 roadmap | some | ✅ | some |
+
+The official artefacts and the Java reference stack remain the gold standard —
+our conformance suite measures against them, and honest gaps are listed in the
+[roadmap](#roadmap).
 
 ## What it is not (yet)
 

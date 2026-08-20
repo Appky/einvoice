@@ -114,3 +114,10 @@ footer.site .wrap { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content
   h1 { font-size: 1.55rem; }
   .einvoice { padding: 1rem; }
 }
+
+.rule-card { border: 1px solid var(--border); border-radius: 10px; padding: 0.8rem 1.1rem; margin: 0.7rem 0; background: var(--card); }
+.rule-card h3 { margin: 0 0 0.4rem; font-family: var(--mono); font-size: 1rem; }
+.rule-card h3 a { text-decoration: none; }
+.rule-card .official { color: var(--muted); font-size: 0.93rem; margin: 0.2rem 0; }
+.rule-card .fix { margin: 0.4rem 0 0.1rem; }
+.rule-card:target { border-color: var(--accent); box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 30%, transparent); }

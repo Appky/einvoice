@@ -39,3 +39,6 @@ export type { Finding, ValidationResult, Severity } from "./rules-util.js";
 export { renderText, renderHtml } from "./render.js";
 
 export const VERSION = "0.1.0";
+export { ruleCatalog, type CatalogEntry } from "./rules-fixes.js";
+export { RULE_TEXTS, type RuleInfo } from "./gen/rules-catalog.js";
+export { XML_LIMITS } from "./xml.js";

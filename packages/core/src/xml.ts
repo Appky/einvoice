@@ -80,6 +80,17 @@ export class XmlParseError extends Error {
   }
 }
 
+/** Hard input limits: invoices are small documents; these caps are generous
+ * for real e-invoices while bounding memory and CPU for hostile input. */
+export const XML_LIMITS = {
+  /** Maximum input size in bytes/characters (25 MB). */
+  maxInput: 25 * 1024 * 1024,
+  /** Maximum element nesting depth. */
+  maxDepth: 128,
+  /** Maximum total number of elements. */
+  maxNodes: 500_000,
+} as const;
+
 const PREDEFINED: Record<string, string> = {
   lt: "<",
   gt: ">",
@@ -129,8 +140,14 @@ interface NsScope {
 
 class Parser {
   private pos = 0;
+  private depth = 0;
+  private nodes = 0;
 
-  constructor(private readonly s: string) {}
+  constructor(private readonly s: string) {
+    if (s.length > XML_LIMITS.maxInput) {
+      throw new XmlParseError(`Input exceeds the ${XML_LIMITS.maxInput / (1024 * 1024)} MB limit`, 0, 1, 1);
+    }
+  }
 
   private fail(message: string, at = this.pos): never {
     let line = 1;
@@ -189,6 +206,8 @@ class Parser {
 
   private parseElement(parentScope: NsScope): XmlElement {
     if (this.s[this.pos] !== "<") this.fail("Expected element");
+    if (++this.depth > XML_LIMITS.maxDepth) this.fail(`Element nesting exceeds the depth limit of ${XML_LIMITS.maxDepth}`);
+    if (++this.nodes > XML_LIMITS.maxNodes) this.fail(`Document exceeds the limit of ${XML_LIMITS.maxNodes} elements`);
     this.pos++;
     const qname = this.readName();
     const rawAttrs: Array<{ qname: string; value: string }> = [];
@@ -252,7 +271,10 @@ class Parser {
       attrs.push({ name: r.name, ns: r.ns, value: a.value });
     }
     const el = new XmlElement(name, ns, attrs);
-    if (selfClosing) return el;
+    if (selfClosing) {
+      this.depth--;
+      return el;
+    }
 
     // Content
     for (;;) {
@@ -269,6 +291,7 @@ class Parser {
         this.skipWs();
         if (this.s[this.pos] !== ">") this.fail("Malformed end tag");
         this.pos++;
+        this.depth--;
         return el;
       }
       if (this.s.startsWith("<!--", this.pos)) {

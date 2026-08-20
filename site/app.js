@@ -44,7 +44,10 @@
       const ul = el("ul", { class: "findings" });
       for (const f of res.findings) {
         const li = el("li", { class: f.severity === "fatal" ? "" : "warn" });
-        li.appendChild(el("div", { class: "rule", text: f.rule + (f.where ? " · " + f.where : "") }));
+        const ruleRow = el("div", { class: "rule" });
+        ruleRow.appendChild(el("a", { href: "rules.html#" + f.rule.toLowerCase(), text: f.rule, title: "Open the rule reference for " + f.rule }));
+        if (f.where) ruleRow.appendChild(document.createTextNode(" · " + f.where));
+        li.appendChild(ruleRow);
         li.appendChild(el("div", { text: f.hint || f.text }));
         if (f.hint) {
           const det = el("details", { class: "official" });
@@ -88,5 +91,9 @@
   $("#try-sample").addEventListener("click", async () => {
     const resp = await fetch("sample-invoice.xml");
     await handle(await resp.text(), "sample-invoice.xml");
+  });
+  $("#try-invalid").addEventListener("click", async () => {
+    const resp = await fetch("sample-invalid.xml");
+    await handle(await resp.text(), "sample-invalid.xml (3 seeded errors)");
   });
 })();

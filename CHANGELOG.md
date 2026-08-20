@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.4 — 2026-08-20
+
+- New: complete EN 16931 rules reference (223 rules, official text + practical
+  fixes) at appky.github.io/einvoice/rules.html; findings in the playground and
+  CLI link to it. Exposed as `ruleCatalog()` in the library API.
+- New: parser hardening limits (25 MB input, depth 128, 500k elements) — the
+  XML parser now bounds hostile input as well as excluding XXE.
+- New: "See a failing invoice" demo, AGENTS.md, llms.txt, issue templates.
+
 ## 0.1.3 — 2026-08-20
 
 - Project home is now the Appky organization: github.com/Appky/einvoice,

@@ -138,3 +138,18 @@ describe("rendering", () => {
     expect(renderHtml(invoice)).not.toContain("<img");
   });
 });
+
+describe("parser hardening limits", () => {
+  it("rejects excessive nesting depth", () => {
+    const deep = "<a>".repeat(200) + "</a>".repeat(200);
+    expect(() => parseXml(deep)).toThrow(/depth limit/);
+  });
+  it("accepts realistic nesting", () => {
+    const ok = "<a>".repeat(50) + "</a>".repeat(50);
+    expect(() => parseXml(ok)).not.toThrow();
+  });
+  it("rejects element-count bombs", () => {
+    const wide = "<r>" + "<x/>".repeat(500_001) + "</r>";
+    expect(() => parseXml(wide)).toThrow(/elements/);
+  });
+});

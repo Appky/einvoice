@@ -80,6 +80,7 @@ for (const file of files) {
           for (const f of res.findings) console.log(fmtFinding(f));
         }
         if (res.findings.length === 0) console.log(dim(`  all ${res.rulesApplied}+ EN 16931 rules satisfied`));
+        if (!res.ok) console.log(dim(`  rule reference: https://appky.github.io/einvoice/rules.html`));
       }
       if (!res.ok) exitCode = 1;
     } else if (cmd === "show") {
