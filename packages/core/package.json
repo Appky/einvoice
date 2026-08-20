@@ -1,6 +1,6 @@
 {
   "name": "einvoice-kit",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "bin": {
     "einvoice-kit": "./dist/cli.js"
   },
@@ -40,15 +40,15 @@
     "e-rechnung",
     "e-invoicing"
   ],
-  "author": "Juraj (appky.sk) and Claude (Anthropic)",
+  "author": "Appky (https://appky.sk)",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/whatwemake/einvoice.git"
+    "url": "git+https://github.com/Appky/einvoice.git"
   },
-  "homepage": "https://whatwemake.github.io/einvoice/",
+  "homepage": "https://appky.github.io/einvoice/",
   "bugs": {
-    "url": "https://github.com/whatwemake/einvoice/issues"
+    "url": "https://github.com/Appky/einvoice/issues"
   },
   "engines": {
     "node": ">=18"

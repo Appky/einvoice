@@ -1,8 +1,7 @@
 # Maintenance runbook
 
 The standard evolves slowly; the project is designed so every recurring task is
-mechanical. This file is the operating manual — for the maintainer, and for the
-agent sessions that do the recurring work.
+mechanical. This file is the operating manual for maintainers.
 
 ## Recurring (CI does most of it)
 

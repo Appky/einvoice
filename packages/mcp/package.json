@@ -1,6 +1,6 @@
 {
   "name": "einvoice-kit-mcp",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "MCP server that lets AI agents read and validate EU e-invoices (EN 16931, XRechnung, Factur-X/ZUGFeRD, UBL, CII, Peppol) locally — no uploads, no Java.",
   "type": "module",
   "bin": {
@@ -14,7 +14,7 @@
     "build": "tsc -p tsconfig.json && node -e \"const fs=require('fs');const p='dist/server.js';fs.writeFileSync(p,'#!/usr/bin/env node\\n'+fs.readFileSync(p,'utf8'));fs.chmodSync(p,0o755)\""
   },
   "dependencies": {
-    "einvoice-kit": "^0.1.2"
+    "einvoice-kit": "^0.1.3"
   },
   "keywords": [
     "mcp",
@@ -28,13 +28,13 @@
     "validation",
     "agent"
   ],
-  "author": "Juraj (appky.sk) and Claude (Anthropic)",
+  "author": "Appky (https://appky.sk)",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/whatwemake/einvoice.git"
+    "url": "git+https://github.com/Appky/einvoice.git"
   },
-  "homepage": "https://whatwemake.github.io/einvoice/",
+  "homepage": "https://appky.github.io/einvoice/",
   "engines": {
     "node": ">=18"
   }

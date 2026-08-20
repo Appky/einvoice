@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.3 — 2026-08-20
+
+- Project home is now the Appky organization: github.com/Appky/einvoice,
+  site at appky.github.io/einvoice. Metadata and links updated; security
+  reports now go through GitHub private vulnerability reporting.
+
 ## 0.1.2 — 2026-08-18
 
 - Project moved to the whatwemake GitHub organization; repository, site and
