@@ -43,14 +43,15 @@ const FAVICON =
     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#1d4ed8"/><path d="M9 8h14v3H9zm0 6h14v3H9zm0 6h9v3H9z" fill="#fff"/><circle cx="24" cy="23" r="5" fill="#15803d"/><path d="M21.5 23l2 2 3-3.5" stroke="#fff" stroke-width="1.6" fill="none"/></svg>`,
   );
 
-const page = ({ path, title, description, body, current, scripts = "" }) => `<!DOCTYPE html>
-<html lang="en">
+const page = ({ path, title, description, body, current, scripts = "", lang = "en", alt = "" }) => `<!DOCTYPE html>
+<html lang="${lang}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${title}</title>
 <meta name="description" content="${description}">
 <link rel="canonical" href="${BASE}/${path === "index.html" ? "" : path}">
+${alt}
 <link rel="icon" href="${FAVICON}">
 <link rel="stylesheet" href="style.css">
 <meta property="og:title" content="${title}">
@@ -103,6 +104,7 @@ ${scripts}
 const home = page({
   path: "index.html",
   current: "home",
+  alt: `<link rel="alternate" hreflang="en" href="${BASE}/">\n<link rel="alternate" hreflang="de" href="${BASE}/de.html">`,
   scripts: `<script src="einvoice.min.js" defer></script>\n<script src="app.js" defer></script>`,
   title: "Validate & view EU e-invoices in your browser — EN 16931, XRechnung, Factur-X, UBL, Peppol",
   description:
@@ -132,7 +134,7 @@ You get a readable invoice and a full <strong>EN&nbsp;16931</strong> business-ru
   </article>
   <article>
     <h3>Tested against the official corpora</h3>
-    <p>The engine is verified against the EU (ConnectingEurope) and KoSIT XRechnung test suites — 120 official files. <a href="conformance.html">See the conformance report.</a></p>
+    <p>The engine is verified against the EU (ConnectingEurope), KoSIT XRechnung and OpenPeppol test suites — 129 official files. <a href="conformance.html">See the conformance report.</a></p>
   </article>
   <article>
     <h3>Errors you can act on</h3>
@@ -169,6 +171,68 @@ You get a readable invoice and a full <strong>EN&nbsp;16931</strong> business-ru
 <p>Use the CLI: <code>npx einvoice-kit validate *.xml</code> — same engine, exit codes for CI pipelines. <a href="docs.html">Details.</a></p>
 `,
 });
+
+
+// 4b) German validator page.
+const de = page({
+  path: "de.html",
+  current: "home",
+  lang: "de",
+  alt: `<link rel="alternate" hreflang="en" href="${BASE}/">\n<link rel="alternate" hreflang="de" href="${BASE}/de.html">`,
+  scripts: `<script src="einvoice.min.js" defer></script>\n<script src="app.js" defer></script>`,
+  title: "E-Rechnung öffnen, lesen & prüfen — XRechnung, ZUGFeRD, Factur-X Viewer & Validator",
+  description:
+    "Kostenloser E-Rechnungs-Viewer und -Validator: XRechnung und ZUGFeRD/Factur-X direkt im Browser öffnen, lesen und gegen EN 16931 und die XRechnung-Regeln (BR-DE) prüfen. Ohne Upload — die Rechnung verlässt Ihren Rechner nicht.",
+  body: `
+<h1>E-Rechnung öffnen. Lesen. Prüfen.</h1>
+<p class="sub">Seit 2025 müssen alle deutschen Unternehmen E-Rechnungen empfangen können — aber eine <strong>XRechnung</strong> oder <strong>ZUGFeRD/Factur-X</strong>-Datei ist ohne Werkzeug nicht lesbar.
+Ziehen Sie die Datei einfach hierher: Sie sehen die Rechnung wie ein normales Dokument und erhalten eine vollständige Prüfung gegen <strong>EN&nbsp;16931</strong> und die <strong>XRechnung-Regeln (BR-DE)</strong>.</p>
+
+<div id="drop" class="drop">
+  <p><strong>Datei hierher ziehen</strong> — <code>.xml</code> (XRechnung) oder <code>.pdf</code> (ZUGFeRD/Factur-X)</p>
+  <p class="hintline">…oder Rechnungs-XML einfach auf dieser Seite einfügen (Strg+V)</p>
+  <div class="row">
+    <label class="btn" for="file">Datei auswählen<input type="file" id="file" accept=".xml,.pdf,application/xml,text/xml,application/pdf" class="visually-hidden"></label>
+    <button id="try-sample" class="primary" type="button">Beispielrechnung testen</button>
+    <button id="try-invalid" type="button">Fehlerhafte Rechnung ansehen</button>
+  </div>
+</div>
+<p class="privacy">🔒 Alles läuft lokal in diesem Browser-Tab. Ihre Rechnung wird <strong>niemals hochgeladen</strong> — diese Seite sendet keine Daten, setzt keine Cookies und nutzt keine Analytics. <a href="https://github.com/Appky/einvoice">Quellcode prüfen.</a></p>
+
+<div id="result" aria-live="polite"></div>
+
+<section class="features" aria-label="Warum dieses Tool">
+  <article>
+    <h3>Wirklich privat</h3>
+    <p>Rechnungen sind Geschäftsdaten. Anders als Upload-Validatoren verarbeitet diese Seite alles im Browser — ohne Server, DSGVO-freundlich, nach dem Laden auch offline nutzbar.</p>
+  </article>
+  <article>
+    <h3>Gegen die offiziellen Testdaten geprüft</h3>
+    <p>Die Prüf-Engine wird gegen 129 offizielle Testdateien von EU, KoSIT (XRechnung) und OpenPeppol verifiziert. <a href="conformance.html">Zum Konformitätsbericht (EN).</a></p>
+  </article>
+  <article>
+    <h3>Fehler, mit denen Sie etwas anfangen können</h3>
+    <p>Nicht nur „[BR-DE-15] fehlgeschlagen": jeder Befund erklärt, was fehlt, wo, und verlinkt die <a href="rules.html">Regel-Referenz</a> mit den offiziellen Regeltexten.</p>
+  </article>
+  <article>
+    <h3>Für Entwickler</h3>
+    <p>Dieselbe Engine gibt es als MIT-lizenzierte TypeScript-Bibliothek ohne Abhängigkeiten, mit CLI und MCP-Server: <code>npm install einvoice-kit</code>. <a href="docs.html">Dokumentation (EN).</a></p>
+  </article>
+</section>
+
+<h2 id="faq">Häufige Fragen</h2>
+<h3>Wird meine Rechnung irgendwohin hochgeladen?</h3>
+<p>Nein. Die Datei wird von JavaScript in Ihrem Browser gelesen und verlässt Ihren Rechner nicht. Es gibt keinen Server, keine Cookies, kein Tracking.</p>
+<h3>Welche Formate werden unterstützt?</h3>
+<p>XRechnung (UBL und CII), ZUGFeRD 2.x / Factur-X (PDF mit eingebettetem XML), UBL 2.1, UN/CEFACT CII und Peppol BIS 3.0. Die XRechnung-Prüfung umfasst zusätzlich die deutschen BR-DE-Regeln — inklusive Leitweg-ID (BT-10), Skonto-Format und IBAN-Prüfsumme.</p>
+<h3>Meine Software erzeugt eine ungültige Rechnung — was nun?</h3>
+<p>Jeder Befund nennt die offizielle Regel-ID (z.&nbsp;B. BR-DE-15) samt Erklärung. Senden Sie beides an Ihren Softwareanbieter — die Regel-IDs sind das Standardvokabular aller E-Rechnungs-Implementierer.</p>
+<h3>Was gilt seit wann?</h3>
+<p>Seit dem 1.&nbsp;Januar 2025 müssen alle deutschen Unternehmen E-Rechnungen <em>empfangen</em> können. Die Pflicht zum <em>Versand</em> folgt gestaffelt 2027–2028. Prüfen Sie Details immer bei offiziellen Quellen; diese Seite ist keine Rechts- oder Steuerberatung.</p>
+<p class="meta"><a href="./">Switch to English</a></p>
+`,
+});
+writeFileSync(join(out, "de.html"), de);
 
 // 5) Developers page.
 const docs = page({
@@ -359,7 +423,7 @@ writeFileSync(
   join(out, "sitemap.xml"),
   `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${["", "rules.html", "docs.html", "conformance.html"].map((p) => `  <url><loc>${BASE}/${p}</loc><lastmod>${TODAY}</lastmod></url>`).join("\n")}
+${["", "de.html", "rules.html", "docs.html", "conformance.html"].map((p) => `  <url><loc>${BASE}/${p}</loc><lastmod>${TODAY}</lastmod></url>`).join("\n")}
 </urlset>
 `,
 );

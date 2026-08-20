@@ -38,7 +38,7 @@ JS developers shell out to Java or POST sensitive invoices to third-party APIs.
   code list rules (BR-CL-\*) with code sets extracted mechanically from the official
   validation artefacts.
 - **Official semantics**: rounding, ±1 tolerances and absent-term handling mirror the
-  official Schematron expressions — verified against **120 official test files** from
+  official Schematron expressions — verified against **129 official test files** from
   the EU and KoSIT corpora in CI ([conformance report](https://appky.github.io/einvoice/conformance.html)).
 - **Exact arithmetic**: BigInt fixed-point decimals; no IEEE-754 VAT surprises.
 - **One semantic model**: UBL and CII map to the same typed model (every field

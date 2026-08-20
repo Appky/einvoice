@@ -3,6 +3,23 @@
 (function () {
   "use strict";
   const $ = (sel) => document.querySelector(sel);
+  const DE = document.documentElement.lang === "de";
+  const T = DE
+    ? {
+        valid: "Gültig", invalid: "Ungültig", cannotRead: "Datei nicht lesbar",
+        errWarn: (e, w) => e + " Fehler, " + w + " Warnung(en)",
+        official: "Offizieller Regeltext", allOk: "Alle implementierten EN-16931-Geschäftsregeln sind erfüllt.",
+        pasted: "eingefügtes XML", supported: "Unterstützt: UBL 2.1 Invoice/CreditNote XML, UN/CEFACT CII XML, Factur-X- oder ZUGFeRD-PDF (XRechnung und Peppol BIS nutzen diese Syntaxen).",
+        ruleTitle: (r) => "Regel-Referenz für " + r + " öffnen",
+      }
+    : {
+        valid: "Valid", invalid: "Invalid", cannotRead: "Cannot read file",
+        errWarn: (e, w) => e + " error(s), " + w + " warning(s)",
+        official: "Official rule text", allOk: "All implemented EN 16931 business rules are satisfied.",
+        pasted: "pasted XML", supported: "Supported: UBL 2.1 Invoice/CreditNote XML, UN/CEFACT CII XML, Factur-X or ZUGFeRD hybrid PDF (XRechnung and Peppol BIS use these syntaxes).",
+        ruleTitle: (r) => "Open the rule reference for " + r,
+      };
+
   const drop = $("#drop");
   const fileInput = $("#file");
   const result = $("#result");
@@ -25,18 +42,18 @@
       parsed = await EInvoice.parseInvoice(bytes);
     } catch (e) {
       result.appendChild(el("div", { class: "verdict" }, [
-        el("span", { class: "pill err", text: "Cannot read file" }),
+        el("span", { class: "pill err", text: T.cannotRead }),
         el("span", { class: "meta", text: name || "" }),
       ]));
       result.appendChild(el("p", { text: e.message }));
-      result.appendChild(el("p", { class: "meta", text: "Supported: UBL 2.1 Invoice/CreditNote XML, UN/CEFACT CII XML, Factur-X or ZUGFeRD hybrid PDF (XRechnung and Peppol BIS use these syntaxes)." }));
+      result.appendChild(el("p", { class: "meta", text: T.supported }));
       return;
     }
     const res = EInvoice.validate(parsed.invoice);
     const label = parsed.profile.name || (parsed.profile.specificationId ? "unrecognized profile" : "no profile");
     const verdict = el("div", { class: "verdict" }, [
-      el("span", { class: "pill " + (res.ok ? "ok" : "err"), text: res.ok ? "Valid" : "Invalid" }),
-      el("span", { class: "meta", text: (name ? name + " — " : "") + parsed.format + " · " + label + " · " + res.errors + " error(s), " + res.warnings + " warning(s)" }),
+      el("span", { class: "pill " + (res.ok ? "ok" : "err"), text: res.ok ? T.valid : T.invalid }),
+      el("span", { class: "meta", text: (name ? name + " — " : "") + parsed.format + " · " + label + " · " + T.errWarn(res.errors, res.warnings) }),
     ]);
     result.appendChild(verdict);
 
@@ -45,13 +62,13 @@
       for (const f of res.findings) {
         const li = el("li", { class: f.severity === "fatal" ? "" : "warn" });
         const ruleRow = el("div", { class: "rule" });
-        ruleRow.appendChild(el("a", { href: "rules.html#" + f.rule.toLowerCase(), text: f.rule, title: "Open the rule reference for " + f.rule }));
+        ruleRow.appendChild(el("a", { href: "rules.html#" + f.rule.toLowerCase(), text: f.rule, title: T.ruleTitle(f.rule) }));
         if (f.where) ruleRow.appendChild(document.createTextNode(" · " + f.where));
         li.appendChild(ruleRow);
         li.appendChild(el("div", { text: f.hint || f.text }));
         if (f.hint) {
           const det = el("details", { class: "official" });
-          det.appendChild(el("summary", { text: "Official rule text" }));
+          det.appendChild(el("summary", { text: T.official }));
           det.appendChild(el("p", { text: f.text }));
           li.appendChild(det);
         }
@@ -59,7 +76,7 @@
       }
       result.appendChild(ul);
     } else {
-      result.appendChild(el("p", { class: "meta", text: "All implemented EN 16931 business rules are satisfied." }));
+      result.appendChild(el("p", { class: "meta", text: T.allOk }));
     }
 
     const rendered = document.createElement("div");
@@ -86,7 +103,7 @@
   });
   document.addEventListener("paste", (e) => {
     const text = e.clipboardData && e.clipboardData.getData("text");
-    if (text && text.trimStart().startsWith("<")) handle(text, "pasted XML");
+    if (text && text.trimStart().startsWith("<")) handle(text, T.pasted);
   });
   $("#try-sample").addEventListener("click", async () => {
     const resp = await fetch("sample-invoice.xml");
