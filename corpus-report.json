@@ -27,9 +27,18 @@
       "profile": "XRechnung",
       "ok": true,
       "errors": 0,
-      "warnings": 0,
-      "rules": [],
-      "findings": []
+      "warnings": 1,
+      "rules": [
+        "BR-DE-17"
+      ],
+      "findings": [
+        {
+          "rule": "BR-DE-17",
+          "severity": "warning",
+          "text": "Mit dem Element \"Invoice type code\" (BT-3) sollen ausschließlich folgende Codes aus der Codeliste UNTDID 1001 übermittelt werden: 326 (Partial invoice), 380 (Commercial invoice), 384 (Corrected invoice), 389 (Self-billed invoice), 381 (Credit note).",
+          "hint": "XRechnung restricts BT-3 to 326, 380, 381, 384, 389 — \"877\" is valid EN 16931 but outside the XRechnung subset."
+        }
+      ]
     },
     {
       "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/extension/04.04a-INVOICE_ubl.xml",
@@ -37,9 +46,18 @@
       "profile": "XRechnung",
       "ok": true,
       "errors": 0,
-      "warnings": 0,
-      "rules": [],
-      "findings": []
+      "warnings": 1,
+      "rules": [
+        "BR-DE-17"
+      ],
+      "findings": [
+        {
+          "rule": "BR-DE-17",
+          "severity": "warning",
+          "text": "Mit dem Element \"Invoice type code\" (BT-3) sollen ausschließlich folgende Codes aus der Codeliste UNTDID 1001 übermittelt werden: 326 (Partial invoice), 380 (Commercial invoice), 384 (Corrected invoice), 389 (Self-billed invoice), 381 (Credit note).",
+          "hint": "XRechnung restricts BT-3 to 326, 380, 381, 384, 389 — \"877\" is valid EN 16931 but outside the XRechnung subset."
+        }
+      ]
     },
     {
       "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/xrechnung-testsuite/src/test/business-cases/extension/04.05a-INVOICE_uncefact.xml",
@@ -1272,6 +1290,96 @@
       "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/eInvoicing-EN16931/cii/examples/huf_example_cii.xml",
       "format": "cii",
       "profile": "EN 16931 core",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/peppol-bis-invoice-3/rules/examples/Allowance-example.xml",
+      "format": "ubl-invoice",
+      "profile": "Peppol BIS Billing 3.0",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/peppol-bis-invoice-3/rules/examples/Vat-category-S.xml",
+      "format": "ubl-invoice",
+      "profile": "Peppol BIS Billing 3.0",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/peppol-bis-invoice-3/rules/examples/base-creditnote-correction.xml",
+      "format": "ubl-creditnote",
+      "profile": "Peppol BIS Billing 3.0",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/peppol-bis-invoice-3/rules/examples/base-example.xml",
+      "format": "ubl-invoice",
+      "profile": "Peppol BIS Billing 3.0",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/peppol-bis-invoice-3/rules/examples/base-negative-inv-correction.xml",
+      "format": "ubl-invoice",
+      "profile": "Peppol BIS Billing 3.0",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/peppol-bis-invoice-3/rules/examples/sales-order-example.xml",
+      "format": "ubl-invoice",
+      "profile": "Peppol BIS Billing 3.0",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/peppol-bis-invoice-3/rules/examples/vat-category-E.xml",
+      "format": "ubl-invoice",
+      "profile": "Peppol BIS Billing 3.0",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/peppol-bis-invoice-3/rules/examples/vat-category-O.xml",
+      "format": "ubl-invoice",
+      "profile": "Peppol BIS Billing 3.0",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "rules": [],
+      "findings": []
+    },
+    {
+      "file": "/private/tmp/claude-501/-Users-macbook-Documents-Dev-what-we-make/7d4697c2-523c-4160-bf0e-0b118618a281/scratchpad/peppol-bis-invoice-3/rules/examples/vat-category-Z.xml",
+      "format": "ubl-invoice",
+      "profile": "Peppol BIS Billing 3.0",
       "ok": true,
       "errors": 0,
       "warnings": 0,

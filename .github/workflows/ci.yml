@@ -35,6 +35,7 @@ jobs:
         run: |
           git clone --depth 1 https://github.com/ConnectingEurope/eInvoicing-EN16931.git corpus-cache/eInvoicing-EN16931
           git clone --depth 1 https://github.com/itplr-kosit/xrechnung-testsuite.git corpus-cache/xrechnung-testsuite
+          git clone --depth 1 https://github.com/OpenPEPPOL/peppol-bis-invoice-3.git corpus-cache/peppol-bis-invoice-3
 
       - name: Verify generated codelists match official artefacts
         run: |
@@ -48,6 +49,7 @@ jobs:
             corpus-cache/xrechnung-testsuite/src/test \
             corpus-cache/eInvoicing-EN16931/ubl/examples \
             corpus-cache/eInvoicing-EN16931/cii/examples \
+            corpus-cache/peppol-bis-invoice-3/rules/examples \
             --json corpus-report.json | tail -5
 
       - name: Enforce conformance floor

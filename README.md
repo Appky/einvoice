@@ -103,7 +103,7 @@ touch invoices, see [AGENTS.md](AGENTS.md) and the machine-readable summary at
 
 Every finding carries the official rule id, a plain-language hint with the
 actual numbers, and a link into the [rules reference](https://appky.github.io/einvoice/rules.html) —
-all 223 EN 16931 rules with official text and practical fixes. Send the rule id
+all 325 rules (EN 16931 core, XRechnung BR-DE, Peppol BIS) with official text and practical fixes. Send the rule id
 to your software vendor; it is the standard vocabulary every e-invoicing
 implementer understands.
 
@@ -116,7 +116,7 @@ implementer understands.
 | Embeddable as a library | ✅ npm | ❌ | ✅ (Java only) | via HTTP |
 | Explained errors with numbers | ✅ | varies | ❌ raw Schematron | varies |
 | Cost | free, MIT | free (lead-gen) | free | metered |
-| National CIUS packs | ✅ XRechnung BR-DE (Peppol 🔜) | some | ✅ | some |
+| National CIUS packs | ✅ XRechnung BR-DE + Peppol BIS | some | ✅ | some |
 
 The official artefacts and the Java reference stack remain the gold standard —
 our conformance suite measures against them, and honest gaps are listed in the
@@ -126,14 +126,14 @@ our conformance suite measures against them, and honest gaps are listed in the
 
 - No XSD schema validation (the semantic rules catch interoperability issues;
   schema validation is planned behind a flag).
-- Peppol rules (**PEPPOL-EN16931-R\***) are the next CIUS pack; XRechnung **BR-DE** ships since v0.2.0.
+- Syntax-only rules that need raw XML structure (e.g. PEPPOL R008 empty elements) and Peppol country sub-packs (NO-R-*, DK-R-*…) are not checked yet.
 - No invoice **generation** yet (model → XML) — roadmap.
 - Not legal or tax advice; findings are informational.
 
 ## Roadmap
 
-1. Peppol BIS rule pack (XRechnung BR-DE shipped in v0.2.0)
-2. Invoice generation: semantic model → valid UBL/CII (+ Factur-X embedding)
+1. Invoice generation: semantic model → valid UBL/CII (+ Factur-X embedding)
+2. German/Slovak/French UI for the browser validator
 3. German/Slovak/French UI for the browser validator
 4. XSD validation option, KSeF (PL) and UBL-SI mappings as demand shows
 

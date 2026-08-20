@@ -6,11 +6,12 @@ import { coreRules } from "./rules-core.js";
 import { vatCategoryRules } from "./rules-vat.js";
 import { codeListRules } from "./rules-codes.js";
 import { isXRechnung, xrechnungRules } from "./rules-xrechnung.js";
+import { isPeppol, peppolRules } from "./rules-peppol.js";
 
 export type { Finding, ValidationResult, Severity } from "./rules-util.js";
 
 /** Approximate number of distinct EN 16931 rules evaluated by this engine. */
-export const RULES_IMPLEMENTED = 196;
+export const RULES_IMPLEMENTED = 230;
 
 export interface ValidateOptions {
   /**
@@ -18,7 +19,7 @@ export interface ValidateOptions {
    * BR-DE pack when the specification identifier (BT-24) declares XRechnung;
    * "en16931" runs only the core rules; "xrechnung" forces the BR-DE pack.
    */
-  profile?: "auto" | "en16931" | "xrechnung";
+  profile?: "auto" | "en16931" | "xrechnung" | "peppol";
 }
 
 export function validate(inv: Invoice, options: ValidateOptions = {}): ValidationResult {
@@ -29,6 +30,9 @@ export function validate(inv: Invoice, options: ValidateOptions = {}): Validatio
   codeListRules(c);
   if (profile === "xrechnung" || (profile === "auto" && isXRechnung(inv))) {
     xrechnungRules(c);
+  }
+  if (profile === "peppol" || (profile === "auto" && isPeppol(inv))) {
+    peppolRules(c);
   }
 
   // Deduplicate identical findings (same rule + where) that can arise from

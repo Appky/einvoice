@@ -83,6 +83,7 @@ const FIXES: Record<string, string> = {
 
 const GROUPS: Array<[RegExp, string]> = [
   [/^BR-DE/, "XRechnung (BR-DE)"],
+  [/^PEPPOL-/, "Peppol BIS Billing 3.0"],
   [/^BR-CL-/, "Code lists (BR-CL)"],
   [/^BR-CO-/, "Calculations & conditions (BR-CO)"],
   [/^BR-DEC-/, "Decimal precision (BR-DEC)"],

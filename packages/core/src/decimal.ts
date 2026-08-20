@@ -59,6 +59,17 @@ export class Dec {
     return new Dec(this.units, this.scale + 2);
   }
 
+  /**
+   * Divide by another decimal, producing `scale` fraction digits
+   * (truncated toward zero). Returns undefined when dividing by zero.
+   */
+  div(other: Dec, scale = 10): Dec | undefined {
+    if (other.units === 0n) return undefined;
+    const shift = BigInt(scale - this.scale + other.scale);
+    const numerator = shift >= 0n ? this.units * 10n ** shift : this.units / 10n ** -shift;
+    return new Dec(numerator / other.units, scale);
+  }
+
   neg(): Dec {
     return new Dec(-this.units, this.scale);
   }

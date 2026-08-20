@@ -187,3 +187,32 @@ describe("XRechnung (BR-DE) pack", () => {
     expect(isValidIban("NOT-AN-IBAN")).toBe(false);
   });
 });
+
+describe("Peppol BIS pack", () => {
+  const PEPPOL_SPEC = "urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0";
+  const asPeppol = () =>
+    MINIMAL_UBL().replace(
+      "<cbc:CustomizationID>urn:cen.eu:en16931:2017</cbc:CustomizationID>",
+      `<cbc:CustomizationID>${PEPPOL_SPEC}</cbc:CustomizationID><cbc:ProfileID>urn:fdc:peppol.eu:2017:poacc:billing:01:1.0</cbc:ProfileID>`,
+    );
+
+  it("activates only for Peppol profiles", () => {
+    const plain = validate(parseInvoiceXml(MINIMAL_UBL()).invoice);
+    expect(plain.findings.some((f) => f.rule.startsWith("PEPPOL"))).toBe(false);
+    const res = validate(parseInvoiceXml(asPeppol()).invoice);
+    const rules = res.findings.map((f) => f.rule);
+    expect(rules).toContain("PEPPOL-EN16931-R003"); // no buyer/order reference
+    expect(rules).toContain("PEPPOL-EN16931-R010"); // no buyer endpoint
+    expect(rules).toContain("PEPPOL-EN16931-R020"); // no seller endpoint
+    expect(rules).not.toContain("PEPPOL-EN16931-R001"); // profile id present
+  });
+
+  it("R120: catches wrong line net vs qty × price", () => {
+    const xml = asPeppol().replace(
+      '<cbc:InvoicedQuantity unitCode="C62">1</cbc:InvoicedQuantity>',
+      '<cbc:InvoicedQuantity unitCode="C62">2</cbc:InvoicedQuantity>',
+    );
+    const res = validate(parseInvoiceXml(xml).invoice);
+    expect(res.findings.map((f) => f.rule)).toContain("PEPPOL-EN16931-R120");
+  });
+});

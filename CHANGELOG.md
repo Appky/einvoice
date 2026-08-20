@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.3.0 — 2026-08-20
+
+- **Peppol BIS Billing 3.0 rule pack**: ~30 PEPPOL-EN16931 rules — endpoint
+  requirements (R010/R020), buyer/order reference (R003), line-amount
+  arithmetic with the official ±0.02 slack (R120), price consistency (R046),
+  allowance percentage pairing (R040-R042), VATEX-category bindings
+  (P0104-P0111), profile type codes, currency consistency (R051) and more.
+  Auto-activated by BT-24; forceable via `validate(inv, { profile: "peppol" })`.
+- All 9 official OpenPeppol examples pass with zero false positives; full
+  corpus is now 129 files.
+- `Dec.div()` exact decimal division added to the arithmetic core.
+
 ## 0.2.0 — 2026-08-20
 
 - **XRechnung rule pack (BR-DE)**: 31 national rules implemented natively —

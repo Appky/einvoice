@@ -44,3 +44,4 @@ export { RULE_TEXTS, type RuleInfo } from "./gen/rules-catalog.js";
 export { XML_LIMITS } from "./xml.js";
 export { isXRechnung, isValidIban, xrechnungRules } from "./rules-xrechnung.js";
 export type { ValidateOptions } from "./validate.js";
+export { isPeppol, peppolRules } from "./rules-peppol.js";
