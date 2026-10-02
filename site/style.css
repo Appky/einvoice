@@ -121,3 +121,17 @@ footer.site .wrap { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content
 .rule-card .official { color: var(--muted); font-size: 0.93rem; margin: 0.2rem 0; }
 .rule-card .fix { margin: 0.4rem 0 0.1rem; }
 .rule-card:target { border-color: var(--accent); box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 30%, transparent); }
+
+.fgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); gap: 1rem; margin: 1.2rem 0; }
+.fgrid fieldset { border: 1px solid var(--border); border-radius: 12px; padding: 0.9rem 1.1rem 1.1rem; background: var(--card); min-width: 0; }
+.fgrid legend { font-weight: 600; padding: 0 0.4rem; }
+.fgrid label { display: block; margin: 0.45rem 0; font-size: 0.92rem; color: var(--muted); }
+.fgrid input, .fgrid select, #lines input, #lines select { font: inherit; width: 100%; box-sizing: border-box; margin-top: 0.15rem; padding: 0.4rem 0.6rem; border: 1px solid var(--border); border-radius: 7px; background: var(--bg); color: var(--fg); }
+#lines td { padding: 0.25rem 0.3rem; }
+#lines .l-del { border: none; background: none; color: var(--muted); font-size: 1.1rem; cursor: pointer; }
+.createbar { position: sticky; bottom: 0; display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; background: var(--bg); border-top: 1px solid var(--border); padding: 0.8rem 0; margin-top: 1.5rem; }
+.createbar .pill { font-size: 0.95rem; padding: 0.3rem 0.8rem; border-radius: 8px; background: var(--card); }
+body:not([data-profile="xrechnung"]) .xr-only { display: none; }
+body:not([data-profile="peppol"]) .peppol-only { display: none; }
+body[data-profile="peppol"] .peppol-also, body[data-profile="xrechnung"] .xr-only.peppol-also { display: block; }
+body[data-profile="xrechnung"] .peppol-also { display: block; }

@@ -1,10 +1,10 @@
 {
   "name": "einvoice-kit",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "bin": {
     "einvoice-kit": "dist/cli.js"
   },
-  "description": "EU e-invoicing toolkit for JavaScript/TypeScript: parse, validate (EN 16931 business rules), and render UBL, CII, Factur-X/ZUGFeRD and XRechnung invoices. Zero dependencies, runs in Node, browsers and edge runtimes.",
+  "description": "EU e-invoicing toolkit for JavaScript/TypeScript: create, parse, validate (EN 16931 + XRechnung BR-DE + Peppol BIS, ~230 native rules) and render UBL, CII and Factur-X/ZUGFeRD invoices. Zero dependencies; Node, browser, edge.",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -38,7 +38,10 @@
     "validation",
     "vat",
     "e-rechnung",
-    "e-invoicing"
+    "e-invoicing",
+    "generator",
+    "create-invoice",
+    "xrechnung-generator"
   ],
   "author": "Appky (https://appky.sk)",
   "license": "MIT",

@@ -30,7 +30,7 @@ await build({
 });
 
 // 2) Static assets.
-for (const f of ["style.css", "app.js", "sample-invoice.xml", "sample-invalid.xml"]) {
+for (const f of ["style.css", "app.js", "create-app.js", "sample-invoice.xml", "sample-invalid.xml"]) {
   cpSync(join(root, "site", f), join(out, f));
 }
 
@@ -80,6 +80,7 @@ ${JSON.stringify({
     <a class="logo" href="./">einvoice<span>.</span></a>
     <nav aria-label="Main">
       <a href="./"${current === "home" ? ' aria-current="page"' : ""}>Validator</a>
+      <a href="create.html"${current === "create" ? ' aria-current="page"' : ""}>Create</a>
       <a href="rules.html"${current === "rules" ? ' aria-current="page"' : ""}>Rules</a>
       <a href="docs.html"${current === "docs" ? ' aria-current="page"' : ""}>Developers</a>
       <a href="conformance.html"${current === "conformance" ? ' aria-current="page"' : ""}>Conformance</a>
@@ -154,11 +155,11 @@ You get a readable invoice and a full <strong>EN&nbsp;16931</strong> business-ru
     <tr><td>Germany</td><td>All businesses must be able to <em>receive</em> e-invoices (issuing phases in 2027–2028)</td><td>since Jan 2025</td></tr>
     <tr><td>Belgium</td><td>B2B e-invoicing via Peppol</td><td>Jan 2026</td></tr>
     <tr><td>Poland</td><td>KSeF clearance (large taxpayers Feb, all VAT payers Apr)</td><td>Feb–Apr 2026</td></tr>
-    <tr><td>France</td><td>All companies must receive; large &amp; mid-size must issue (SMEs 2027)</td><td>Sep 2026</td></tr>
+    <tr><td>France</td><td>All companies must receive; large &amp; mid-size must issue (SMEs 2027)</td><td><strong>live since Sep 2026</strong></td></tr>
     <tr><td>Slovakia</td><td>Domestic B2B/B2G e-invoicing (zákon č. 385/2025 Z. z.)</td><td>Jan 2027</td></tr>
   </tbody>
 </table>
-<p class="meta">Dates verified 2026-08. Always confirm details with official sources for your country.</p>
+<p class="meta">Dates verified 2026-10. Always confirm details with official sources for your country.</p>
 
 <h2 id="faq">Questions people ask</h2>
 <h3>Is my invoice uploaded anywhere?</h3>
@@ -233,6 +234,104 @@ Ziehen Sie die Datei einfach hierher: Sie sehen die Rechnung wie ein normales Do
 `,
 });
 writeFileSync(join(out, "de.html"), de);
+
+
+// 4c) Create page — client-side invoice creator.
+const FORM = `
+<h1>Create a compliant e-invoice. Right here.</h1>
+<p class="sub">Fill in the form, get a valid <strong>EN 16931</strong>, <strong>XRechnung</strong> or <strong>Peppol BIS</strong> UBL invoice.
+Totals and the VAT breakdown are computed for you with exact arithmetic, the result is validated live against all ~230 rules, and nothing you type leaves this browser tab.</p>
+
+<form id="create" autocomplete="off">
+<div class="fgrid">
+  <fieldset><legend>Invoice</legend>
+    <label>Profile
+      <select id="f-profile">
+        <option value="en16931">EN 16931 (EU core)</option>
+        <option value="xrechnung">XRechnung (Germany)</option>
+        <option value="peppol">Peppol BIS 3.0</option>
+      </select>
+    </label>
+    <label>Type
+      <select id="f-type"><option value="380">Invoice (380)</option><option value="381">Credit note (381)</option></select>
+    </label>
+    <label>Number* <input id="f-number" placeholder="2026-001" required></label>
+    <label>Issue date* <input id="f-issue" type="date" required></label>
+    <label>Due date <input id="f-due" type="date"></label>
+    <label>Currency <input id="f-currency" value="EUR" size="4"></label>
+    <label class="xr-only peppol-also">Buyer reference / Leitweg-ID <input id="f-buyerref" placeholder="04011000-12345-67"></label>
+  </fieldset>
+  <fieldset><legend>Seller (you)</legend>
+    <label>Legal name* <input id="s-name"></label>
+    <label>VAT ID <input id="s-vat" placeholder="DE123456789"></label>
+    <label>Registration no. <input id="s-reg"></label>
+    <label>Street <input id="s-street"></label>
+    <label>City <input id="s-city"></label>
+    <label>Post code <input id="s-post"></label>
+    <label>Country* <input id="s-country" placeholder="DE" size="3" maxlength="2"></label>
+    <div class="xr-only">
+      <label>Contact name <input id="s-cname"></label>
+      <label>Contact phone <input id="s-cphone"></label>
+      <label>Contact e-mail <input id="s-cemail" type="email"></label>
+    </div>
+    <div class="peppol-only">
+      <label>Electronic address scheme <input id="s-eas" placeholder="9930" size="5"></label>
+      <label>Electronic address <input id="s-easv" placeholder="DE123456789"></label>
+    </div>
+  </fieldset>
+  <fieldset><legend>Buyer</legend>
+    <label>Legal name* <input id="b-name"></label>
+    <label>VAT ID <input id="b-vat"></label>
+    <label>Registration no. <input id="b-reg"></label>
+    <label>Street <input id="b-street"></label>
+    <label>City <input id="b-city"></label>
+    <label>Post code <input id="b-post"></label>
+    <label>Country* <input id="b-country" placeholder="FR" size="3" maxlength="2"></label>
+    <div class="peppol-only">
+      <label>Electronic address scheme <input id="b-eas" placeholder="0208" size="5"></label>
+      <label>Electronic address <input id="b-easv"></label>
+    </div>
+  </fieldset>
+</div>
+
+<h2>Lines</h2>
+<table id="lines" class="plain"><thead><tr><th>Item</th><th>Qty</th><th>Unit</th><th>Unit price</th><th>VAT %</th><th></th></tr></thead><tbody></tbody></table>
+<p><button type="button" id="add-line">+ Add line</button></p>
+
+<div class="fgrid">
+  <fieldset><legend>Payment</legend>
+    <label>IBAN <input id="f-iban" placeholder="DE89 3704 0044 0532 0130 00"></label>
+    <label>BIC <input id="f-bic"></label>
+    <label>Payment terms <input id="f-terms" placeholder="Payable within 14 days."></label>
+    <label>Note <input id="f-note"></label>
+  </fieldset>
+</div>
+</form>
+
+<div class="createbar">
+  <span id="status" class="pill">…</span>
+  <span id="totals" class="meta"></span>
+  <button id="download" class="primary" disabled>Download XML</button>
+</div>
+
+<h2>Notes</h2>
+<ul>
+  <li>The VAT rate field accepts 0 — use it with the standard categories via the library for zero-rated, exempt or reverse-charge invoices; this form covers the common standard-rated case (category S). The <a href="docs.html">library API</a> covers all categories including reverse charge and credit notes.</li>
+  <li>XRechnung mode enforces the German BR-DE rules (Leitweg-ID, seller contact, payment details). Peppol mode enforces electronic addresses.</li>
+  <li>Your draft is kept only in this browser (localStorage) so you don't lose work on reload. Nothing is sent anywhere — there is no server.</li>
+  <li>Not legal or tax advice. Verify requirements with your tax advisor.</li>
+</ul>`;
+const create = page({
+  path: "create.html",
+  current: "create",
+  alt: "",
+  scripts: `<script src="einvoice.min.js" defer></script>\n<script src="create-app.js" defer></script>`,
+  title: "Create an e-invoice online — free XRechnung, Peppol & EN 16931 generator, no upload",
+  description:
+    "Create a valid EN 16931, XRechnung or Peppol BIS e-invoice in your browser. Totals and VAT computed for you, validated live against 230+ rules. Free, no account, nothing uploaded.",
+  body: FORM,
+});
+writeFileSync(join(out, "create.html"), create);
 
 // 5) Developers page.
 const docs = page({
@@ -423,7 +522,7 @@ writeFileSync(
   join(out, "sitemap.xml"),
   `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${["", "de.html", "rules.html", "docs.html", "conformance.html"].map((p) => `  <url><loc>${BASE}/${p}</loc><lastmod>${TODAY}</lastmod></url>`).join("\n")}
+${["", "de.html", "create.html", "rules.html", "docs.html", "conformance.html"].map((p) => `  <url><loc>${BASE}/${p}</loc><lastmod>${TODAY}</lastmod></url>`).join("\n")}
 </urlset>
 `,
 );

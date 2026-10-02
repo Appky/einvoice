@@ -1,6 +1,6 @@
 # einvoice
 
-Read, check and debug EU e-invoices — without uploading them anywhere.
+Create, read, check and debug EU e-invoices — without uploading them anywhere.
 
 `einvoice-kit` is a zero-dependency TypeScript library, CLI and MCP server that
 parses, validates and renders EN 16931 electronic invoices: **XRechnung,
@@ -11,9 +11,12 @@ rules natively — no Java, no SaaS API, no invoice ever leaves your machine.
 ```bash
 npx einvoice-kit validate invoice.xml     # every violation, explained
 npx einvoice-kit show facture.pdf         # read a Factur-X PDF like a human
+npx einvoice-kit new --template           # … fill it in, then:
+npx einvoice-kit new invoice.json         # emit valid XRechnung/Peppol/EN UBL
 ```
 
-**Browser version (drag & drop, nothing uploaded): https://appky.github.io/einvoice/**
+**View & validate in the browser: https://appky.github.io/einvoice/**
+**Create an invoice in the browser: https://appky.github.io/einvoice/create.html**
 **Every rule explained: https://appky.github.io/einvoice/rules.html**
 
 [![CI](https://github.com/Appky/einvoice/actions/workflows/ci.yml/badge.svg)](https://github.com/Appky/einvoice/actions/workflows/ci.yml)
@@ -23,7 +26,7 @@ npx einvoice-kit show facture.pdf         # read a Factur-X PDF like a human
 ## Why
 
 Between 2025 and 2028 structured e-invoicing becomes mandatory across Europe
-(Germany receives since 2025, Belgium 1/2026, Poland 2/2026, France 9/2026,
+(Germany receives since 2025, Belgium 1/2026, Poland 2/2026, France live since 9/2026,
 Slovakia 1/2027, ViDA EU-wide by 2030). Every invoicing SaaS, ERP integration and
 accounting tool has to produce or consume EN 16931 documents.
 
@@ -78,6 +81,36 @@ invoice.lines[0].vat?.rate;     // BT-152
 console.log(renderText(invoice)); // human-readable summary (also renderHtml)
 ```
 
+
+## Creating invoices
+
+```ts
+import { buildInvoice } from "einvoice-kit";
+
+const xml = buildInvoice({
+  number: "2026-001",
+  issueDate: "2026-10-02",
+  profile: "xrechnung",            // or "peppol" / "en16931"
+  buyerReference: "04011000-12345-67",   // Leitweg-ID
+  seller: { name: "Studio s.r.o.", vatId: "SK2021234567", countryCode: "SK",
+            city: "Bratislava", postCode: "81101",
+            contact: { name: "J. Novak", phone: "+421…", email: "jan@…" } },
+  buyer:  { name: "Muster GmbH", vatId: "DE123456789", countryCode: "DE",
+            city: "Berlin", postCode: "10115" },
+  lines: [{ name: "Consulting", quantity: 3, unit: "DAY", unitPrice: "400.00", vatRate: 19 }],
+  iban: "DE89370400440532013000",
+});
+```
+
+You provide the business facts; line extensions, the per-category VAT breakdown
+and all totals are derived with exact decimal arithmetic, so the calculation
+rules (BR-CO-10…17, BR-S-08…) hold by construction. Impossible inputs fail
+fast with the rule that forbids them ("XRechnung requires buyerReference —
+BR-DE-15"). Every generated document round-trips through this library's own
+validator with zero findings — that property is enforced by the test suite.
+Credit notes (`typeCode: "381"`) and the common VAT categories (S, Z, E, AE,
+G, O) are supported; see the API docs for limits.
+
 ## CLI
 
 ```bash
@@ -127,12 +160,11 @@ our conformance suite measures against them, and honest gaps are listed in the
 - No XSD schema validation (the semantic rules catch interoperability issues;
   schema validation is planned behind a flag).
 - Syntax-only rules that need raw XML structure (e.g. PEPPOL R008 empty elements) and Peppol country sub-packs (NO-R-*, DK-R-*…) are not checked yet.
-- No invoice **generation** yet (model → XML) — roadmap.
 - Not legal or tax advice; findings are informational.
 
 ## Roadmap
 
-1. Invoice generation: semantic model → valid UBL/CII (+ Factur-X embedding)
+1. Generation extensions: CII output, Factur-X PDF embedding, category K, allowances
 2. German/Slovak/French UI for the browser validator
 3. German/Slovak/French UI for the browser validator
 4. XSD validation option, KSeF (PL) and UBL-SI mappings as demand shows

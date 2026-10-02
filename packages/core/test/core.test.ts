@@ -216,3 +216,88 @@ describe("Peppol BIS pack", () => {
     expect(res.findings.map((f) => f.rule)).toContain("PEPPOL-EN16931-R120");
   });
 });
+
+describe("buildInvoice round-trip", () => {
+  const base = () => ({
+    number: "RT-1",
+    issueDate: "2026-10-01",
+    dueDate: "2026-10-15",
+    seller: {
+      name: "Seller s.r.o.", vatId: "SK2021234567", registrationId: "12345678",
+      street: "Hlavná 1", city: "Bratislava", postCode: "81101", countryCode: "SK",
+      contact: { name: "Jan Novak", phone: "+421900123456", email: "jan@example.sk" },
+      electronicAddress: { scheme: "9930", value: "SK2021234567" },
+    },
+    buyer: {
+      name: "Buyer GmbH", vatId: "DE123456789",
+      street: "Musterstr. 1", city: "Berlin", postCode: "10115", countryCode: "DE",
+      electronicAddress: { scheme: "9930", value: "DE123456789" },
+    },
+    lines: [
+      { name: "Development", quantity: 3, unit: "DAY", unitPrice: "400.00", vatRate: 23 },
+      { name: "Consulting", quantity: "1.5", unit: "HUR", unitPrice: "80.00", vatRate: 23 },
+    ],
+    iban: "SK3112000000198742637541",
+  });
+
+  const roundTrip = async (input: any) => {
+    const { buildInvoice } = await import("../src/build.js");
+    const { parseInvoice } = await import("../src/detect.js");
+    const xml = buildInvoice(input);
+    const { invoice } = await parseInvoice(xml);
+    return { xml, invoice, res: validate(invoice) };
+  };
+
+  it("EN 16931 core invoice validates clean", async () => {
+    const { res, invoice } = await roundTrip(base());
+    expect(res.findings).toEqual([]);
+    expect(invoice.totals.payable?.raw).toBe("1623.60"); // (1200+120) × 1.23
+  });
+
+  it("XRechnung profile passes the BR-DE pack", async () => {
+    const { res } = await roundTrip({ ...base(), profile: "xrechnung", buyerReference: "04011000-12345-67" });
+    expect(res.findings).toEqual([]);
+  });
+
+  it("Peppol profile passes the Peppol pack", async () => {
+    const { res } = await roundTrip({ ...base(), profile: "peppol", buyerReference: "PO-1" });
+    expect(res.findings).toEqual([]);
+  });
+
+  it("credit note (381) validates clean", async () => {
+    const { res, invoice } = await roundTrip({ ...base(), typeCode: "381" });
+    expect(invoice.syntax).toBe("ubl-creditnote");
+    expect(res.findings).toEqual([]);
+  });
+
+  it("reverse charge (AE) with default exemption reason", async () => {
+    const input = base();
+    input.lines = [{ name: "SaaS", quantity: 1, unit: "C62", unitPrice: "500.00", vatCategory: "AE", vatRate: 0 }];
+    const { res, xml } = await roundTrip(input);
+    expect(res.findings).toEqual([]);
+    expect(xml).toContain("VATEX-EU-AE");
+  });
+
+  it("mixed rates produce one breakdown per rate", async () => {
+    const input = base();
+    input.lines.push({ name: "Books", quantity: 2, unit: "C62", unitPrice: "10.00", vatRate: 10 });
+    const { invoice, res } = await roundTrip(input);
+    expect(invoice.vatBreakdowns.length).toBe(2);
+    expect(res.findings).toEqual([]);
+  });
+
+  it("category O end-to-end without VAT ids", async () => {
+    const input: any = base();
+    delete input.seller.vatId; delete input.buyer.vatId;
+    input.lines = [{ name: "Public fee", quantity: 1, unit: "C62", unitPrice: "100.00", vatCategory: "O" }];
+    const { res } = await roundTrip(input);
+    expect(res.findings).toEqual([]);
+  });
+
+  it("rejects impossible inputs with named rules", async () => {
+    const { buildInvoice, BuildError } = await import("../src/build.js");
+    expect(() => buildInvoice({ ...base(), profile: "xrechnung" } as any)).toThrow(/BR-DE-15/);
+    const s0 = base(); s0.lines[0]!.vatRate = 0 as any;
+    expect(() => buildInvoice(s0 as any)).toThrow(/BR-S-05/);
+  });
+});

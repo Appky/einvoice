@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.4.0 — 2026-10-02
+
+- **Invoice generation**: `buildInvoice(input)` produces valid EN 16931 /
+  XRechnung / Peppol BIS UBL 2.1 (invoices and credit notes). Totals and the
+  VAT breakdown are computed with exact decimals; impossible inputs fail fast
+  naming the forbidding rule; every output round-trips through the validator
+  with zero findings (enforced in tests).
+- **Browser invoice creator** at /create.html — form → live-validated XML
+  download, entirely client-side, drafts kept in localStorage only.
+- CLI: `einvoice-kit new --template` and `einvoice-kit new input.json`.
+- Release automation: publishing now happens from a tagged GitHub release via
+  npm trusted publishing with provenance (.github/workflows/publish.yml).
+- CI: Node 18/20 compatibility matrix. Site copy refreshed (France mandate
+  live since Sep 2026).
+
 ## 0.3.0 — 2026-08-20
 
 - **Peppol BIS Billing 3.0 rule pack**: ~30 PEPPOL-EN16931 rules — endpoint

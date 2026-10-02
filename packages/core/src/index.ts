@@ -45,3 +45,4 @@ export { XML_LIMITS } from "./xml.js";
 export { isXRechnung, isValidIban, xrechnungRules } from "./rules-xrechnung.js";
 export type { ValidateOptions } from "./validate.js";
 export { isPeppol, peppolRules } from "./rules-peppol.js";
+export { buildInvoice, BuildError, type InvoiceInput, type BuildParty, type BuildLine } from "./build.js";

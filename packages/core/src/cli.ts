@@ -10,7 +10,7 @@
 
 import { readFileSync } from "node:fs";
 import process from "node:process";
-import { parseInvoice, validate, renderText, renderHtml, VERSION, type Finding } from "./index.js";
+import { parseInvoice, validate, renderText, renderHtml, buildInvoice, VERSION, type Finding, type InvoiceInput } from "./index.js";
 
 const args = process.argv.slice(2);
 const flags = new Set(args.filter((a: string) => a.startsWith("--")));
@@ -31,6 +31,8 @@ Usage:
   einvoice-kit validate <file...>   Validate against the EN 16931 business rules
   einvoice-kit show <file>          Human-readable invoice summary (--html for HTML)
   einvoice-kit inspect <file>       Print the parsed semantic model as JSON
+  einvoice-kit new <input.json>     Build a valid UBL invoice from JSON input
+  einvoice-kit new --template       Print a starter input.json
 
 Options:
   --json       Machine-readable output
@@ -45,6 +47,50 @@ Everything runs locally; nothing is uploaded.`);
 }
 
 if (!cmd || flags.has("--help") || flags.has("-h")) usage(cmd ? 0 : 1);
+
+if (cmd === "new") {
+  if (flags.has("--template")) {
+    console.log(JSON.stringify({
+      number: "2026-001",
+      issueDate: new Date().toISOString().slice(0, 10),
+      dueDate: "",
+      profile: "en16931",
+      currency: "EUR",
+      buyerReference: "",
+      seller: { name: "", vatId: "", street: "", city: "", postCode: "", countryCode: "", contact: { name: "", phone: "", email: "" } },
+      buyer: { name: "", vatId: "", street: "", city: "", postCode: "", countryCode: "" },
+      lines: [{ name: "", quantity: 1, unit: "C62", unitPrice: "0.00", vatRate: 20 }],
+      iban: "",
+      paymentTerms: "Payable within 14 days.",
+    }, null, 2));
+    process.exit(0);
+  }
+  if (files.length !== 1) usage(1);
+  try {
+    const raw = JSON.parse(readFileSync(files[0]!, "utf8")) as InvoiceInput;
+    const prune = (o: unknown): void => {
+      if (o && typeof o === "object") for (const k of Object.keys(o as Record<string, unknown>)) {
+        const v = (o as Record<string, unknown>)[k];
+        if (v === "" || v === null) delete (o as Record<string, unknown>)[k];
+        else prune(v);
+      }
+    };
+    prune(raw);
+    const xml = buildInvoice(raw);
+    const check = validate((await parseInvoice(xml)).invoice);
+    if (!check.ok) {
+      console.error(red("internal error: generated invoice failed validation — please report this input at https://github.com/Appky/einvoice/issues"));
+      for (const f of check.findings) console.error("  " + f.rule + ": " + (f.hint ?? f.text));
+      process.exit(2);
+    }
+    console.log(xml);
+    process.exit(0);
+  } catch (e) {
+    console.error(red((e as Error).message));
+    process.exit(2);
+  }
+}
+
 if (files.length === 0) usage(1);
 
 const fmtFinding = (f: Finding): string => {
